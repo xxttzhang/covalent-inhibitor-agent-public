@@ -1,0 +1,133 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "structure_reference": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Structure Reference"
+    },
+    "source": {
+      "default": "none",
+      "enum": [
+        "experimental",
+        "p2rank",
+        "prankweb",
+        "other",
+        "none"
+      ],
+      "title": "Source",
+      "type": "string"
+    },
+    "center_xyz_angstrom": {
+      "anyOf": [
+        {
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Center Xyz Angstrom"
+    },
+    "box_size_xyz_angstrom": {
+      "anyOf": [
+        {
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Box Size Xyz Angstrom"
+    },
+    "pocket_residue_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Pocket Residue Ids",
+      "type": "array"
+    },
+    "key_interaction_residue_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Key Interaction Residue Ids",
+      "type": "array"
+    },
+    "hydrophobic_regions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Hydrophobic Regions",
+      "type": "array"
+    },
+    "hydrogen_bond_donors": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Hydrogen Bond Donors",
+      "type": "array"
+    },
+    "hydrogen_bond_acceptors": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Hydrogen Bond Acceptors",
+      "type": "array"
+    },
+    "excluded_volume_reference": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Excluded Volume Reference"
+    },
+    "warhead_reachable_region_defined": {
+      "default": false,
+      "title": "Warhead Reachable Region Defined",
+      "type": "boolean"
+    }
+  },
+  "title": "PocketDefinition",
+  "type": "object"
+}

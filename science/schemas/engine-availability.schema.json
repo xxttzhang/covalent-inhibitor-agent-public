@@ -1,0 +1,37 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "carsidock_cov": {
+      "default": false,
+      "title": "Carsidock Cov",
+      "type": "boolean"
+    },
+    "rtmscore": {
+      "default": false,
+      "title": "Rtmscore",
+      "type": "boolean"
+    },
+    "alphafold3_mpae": {
+      "default": false,
+      "title": "Alphafold3 Mpae",
+      "type": "boolean"
+    },
+    "covdock_vs": {
+      "default": false,
+      "title": "Covdock Vs",
+      "type": "boolean"
+    },
+    "covdock_lo": {
+      "default": false,
+      "title": "Covdock Lo",
+      "type": "boolean"
+    },
+    "schrodinger_license_ok": {
+      "default": false,
+      "title": "Schrodinger License Ok",
+      "type": "boolean"
+    }
+  },
+  "title": "EngineAvailability",
+  "type": "object"
+}

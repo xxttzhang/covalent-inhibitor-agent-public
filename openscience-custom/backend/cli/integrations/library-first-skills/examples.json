@@ -1,0 +1,262 @@
+[
+  {
+    "name": "list",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "list"
+    },
+    "valid": true
+  },
+  {
+    "name": "status",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "status",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "report",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "report",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "approve",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "approve",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "cancel",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "cancel",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "wake",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "wake",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "resume_delivery",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "resume_delivery",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "diagnose_preparation",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "diagnose_preparation",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "diagnose_refinement",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "diagnose_refinement",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "plan_refinement",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "plan_refinement",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "approve_refinement",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "approve_refinement",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "cancel_refinement",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "cancel_refinement",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "refinement_status",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "refinement_status",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "refinement_report",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "refinement_report",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "resume_refinement_delivery",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "resume_refinement_delivery",
+      "task_id": "screen-9b56c32831224a76a3848d43"
+    },
+    "valid": true
+  },
+  {
+    "name": "create-shape-only",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "create",
+      "request": "针对 EGFR C797，使用 CovInDB 虚拟筛选库，标准筛选，预算上限50点券。",
+      "target": "EGFR",
+      "site": "C797",
+      "target_parameters": {
+        "target": "EGFR",
+        "receptor": "1M17",
+        "chain": "A",
+        "residue": "CYS",
+        "residue_number": 797,
+        "insertion_code": "",
+        "numbering": "canonical",
+        "reaction_type": "Michael Addition"
+      },
+      "library": "CovInDB/Virtual_Screening_Library.csv",
+      "screening_mode": "standard",
+      "max_points": 50
+    },
+    "valid": true
+  },
+  {
+    "name": "selection-shape-only-not-default-policy",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "select_refinement",
+      "task_id": "screen-9b56c32831224a76a3848d43",
+      "selection_policy": {
+        "max_candidates": 8,
+        "max_fraction": 0.1,
+        "disagreement_threshold": 0.2,
+        "top_fraction": 0.3,
+        "uncertainty_count": 4,
+        "consensus_count": 2,
+        "diversity_count": 2
+      }
+    },
+    "valid": true
+  },
+  {
+    "name": "md-plan",
+    "tool": "molecular_dynamics",
+    "arguments": {
+      "action": "plan"
+    },
+    "valid": true
+  },
+  {
+    "name": "md-status",
+    "tool": "molecular_dynamics",
+    "arguments": {
+      "action": "status"
+    },
+    "valid": true
+  },
+  {
+    "name": "md-start",
+    "tool": "molecular_dynamics",
+    "arguments": {
+      "action": "start"
+    },
+    "valid": true
+  },
+  {
+    "name": "evidence-query",
+    "tool": "covindb_query",
+    "arguments": {
+      "target": "EGFR",
+      "site": "C797",
+      "limit": 10,
+      "offset": 0
+    },
+    "valid": true
+  },
+  {
+    "name": "reject-model-approval",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "approve",
+      "task_id": "screen-9b56c32831224a76a3848d43",
+      "human_approved": true
+    },
+    "valid": false
+  },
+  {
+    "name": "reject-lifecycle-edit",
+    "tool": "inspire_screening_task",
+    "arguments": {
+      "action": "status",
+      "task_id": "screen-9b56c32831224a76a3848d43",
+      "target": "KRAS"
+    },
+    "valid": false
+  },
+  {
+    "name": "reject-md-new-input",
+    "tool": "molecular_dynamics",
+    "arguments": {
+      "action": "start",
+      "candidate": "new-molecule"
+    },
+    "valid": false
+  },
+  {
+    "name": "reject-evidence-empty",
+    "tool": "covindb_query",
+    "arguments": {},
+    "valid": false
+  },
+  {
+    "name": "screening capabilities are a read-only zero-argument contract",
+    "tool": "inspire_screening_capabilities",
+    "arguments": {},
+    "valid": true
+  },
+  {
+    "name": "capability lookup cannot carry a compute approval",
+    "tool": "inspire_screening_capabilities",
+    "arguments": {
+      "human_approved": true
+    },
+    "valid": false
+  }
+]

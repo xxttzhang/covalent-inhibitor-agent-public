@@ -1,0 +1,12 @@
+carsidock_score_direction: lower_is_better
+rtmscore_score_direction: higher_is_better
+af3_mpae_score_direction: lower_is_better
+af3_ranking_score_direction: higher_is_better
+covdock_score_direction: PENDING_CONFIRMATION
+adjusted_logauc_formula: dude_logauc_0.001_v1
+adjusted_logauc_xmin: 0.001
+adjusted_logauc_random_baseline: 0.14462
+notes:
+  CarsiScore is sorted ascending in upstream docking_inference_utils.py.
+  RTMScore direction follows the upstream probability aggregation.
+  CovDock direction remains pending until a legitimate run exposes the installed output fields.

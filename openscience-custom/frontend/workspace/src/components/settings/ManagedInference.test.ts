@@ -1,0 +1,56 @@
+import { expect, test } from "bun:test"
+import { commitBilling } from "./ManagedInference"
+
+// The provider catalog is intentionally not part of this helper. It is a
+// multi-megabyte follow-up synchronization; including it here used to keep all
+// three routing buttons disabled long after the small billing write had saved.
+test("resolves as soon as the billing write is applied", async () => {
+  const order: string[] = []
+  const applied: number[] = []
+
+  const ok = await commitBilling<{ llm: string }>(
+    async () => {
+      order.push("write")
+      return { data: { llm: "managed" } }
+    },
+    (data) => {
+      order.push("apply")
+      applied.push(data.llm.length)
+    },
+  )
+
+  expect(ok).toBe(true)
+  expect(order).toEqual(["write", "apply"])
+  expect(applied).toEqual(["managed".length])
+})
+
+test("does not apply when the write comes back without data", async () => {
+  const order: string[] = []
+  let applyCalls = 0
+
+  const ok = await commitBilling<{ llm: string }>(
+    async () => {
+      order.push("write")
+      return {}
+    },
+    () => applyCalls++,
+  )
+
+  expect(ok).toBe(false)
+  expect(order).toEqual(["write"])
+  expect(applyCalls).toBe(0)
+})
+
+test("propagates a write rejection without applying data", async () => {
+  let applyCalls = 0
+
+  const rejection = commitBilling<{ llm: string }>(
+    async () => {
+      throw new Error("network down")
+    },
+    () => applyCalls++,
+  )
+
+  await expect(rejection).rejects.toThrow("network down")
+  expect(applyCalls).toBe(0)
+})

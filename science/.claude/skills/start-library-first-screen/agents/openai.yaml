@@ -1,0 +1,4 @@
+interface:
+  display_name: "启动 Library-first 筛选"
+  short_description: "Natural-language intake for covalent library screens"
+  default_prompt: "Use $start-library-first-screen to screen CovalentInDB for covalent inhibitors against EGFR C797."

@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "status": "preliminary_in_progress",
+  "routes": [
+    "ligand-first",
+    "library-first"
+  ],
+  "entry": "new browser conversation and new study within registered target/profile scope",
+  "stages": [
+    "target_and_site",
+    "route_inputs",
+    "candidate_discovery",
+    "candidate_evaluation",
+    "candidate_selection",
+    "md_admission",
+    "parameterization",
+    "system_preparation",
+    "short_qc",
+    "equilibration"
+  ],
+  "checks": [
+    "Source/build/runtime/configuration identities recorded before execution",
+    "All user actions use the web UI, including exact native approvals",
+    "No developer file copying, database editing or manual tool injection needed to proceed",
+    "Results, provenance, uncertainty and failure reasons visible in the same study",
+    "Reopening the conversation preserves study and task identity",
+    "Failure, cancellation, timeout and connection recovery do not duplicate compute",
+    "Scientific rejection preserves negative evidence and blocks unjustified downstream execution"
+  ],
+  "coverage_rule": "An early scientific stop does not establish acceptance of unvisited downstream stages; record them as not tested and cover separately.",
+  "out_of_scope": [
+    "production MD integration",
+    "final trajectory analysis integration",
+    "full De novo acceptance"
+  ],
+  "evidence_directory": "Explicit external directory supplied by the acceptance runner; never inside source",
+  "preparation": {
+    "source_copy": "completed",
+    "isolated_dependencies": "installed",
+    "builds": "passed",
+    "web_model_smoke": "passed",
+    "scientific_tool_discovery": "passed_68_tools",
+    "scientific_execution_binding": "connected_independent_remote_release",
+    "full_web_routes": "ligand_and_library_preliminary_in_progress",
+    "final_frozen_runtime": "pending"
+  }
+}

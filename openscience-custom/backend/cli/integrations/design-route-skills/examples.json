@@ -1,0 +1,162 @@
+{
+  "arguments": [
+    {
+      "name": "create",
+      "arguments": {
+        "action": "create"
+      },
+      "valid": true
+    },
+    {
+      "name": "status",
+      "arguments": {
+        "action": "status",
+        "task_id": "denovo-0123456789abcdef01234567"
+      },
+      "valid": true
+    },
+    {
+      "name": "wrong target",
+      "arguments": {
+        "action": "create",
+        "target": "KRAS"
+      },
+      "valid": false
+    },
+    {
+      "name": "model count",
+      "arguments": {
+        "action": "create",
+        "slots": 8
+      },
+      "valid": false
+    },
+    {
+      "name": "model approval",
+      "arguments": {
+        "action": "create",
+        "human_approved": true
+      },
+      "valid": false
+    },
+    {
+      "name": "command injection",
+      "arguments": {
+        "action": "create",
+        "command": "run"
+      },
+      "valid": false
+    },
+    {
+      "name": "list unavailable",
+      "arguments": {
+        "action": "list"
+      },
+      "valid": false
+    },
+    {
+      "name": "missing id",
+      "arguments": {
+        "action": "status"
+      },
+      "valid": false
+    },
+    {
+      "name": "path as id",
+      "arguments": {
+        "action": "status",
+        "task_id": "../../status.json"
+      },
+      "valid": false
+    },
+    {
+      "name": "wrong id length",
+      "arguments": {
+        "action": "status",
+        "task_id": "denovo-123"
+      },
+      "valid": false
+    },
+    {
+      "name": "status extra field",
+      "arguments": {
+        "action": "status",
+        "task_id": "denovo-0123456789abcdef01234567",
+        "refresh": true
+      },
+      "valid": false
+    }
+  ],
+  "requests": [
+    {
+      "name": "normal",
+      "text": "针对 EGFR C797，固定丙烯酰胺，用 PocketXMol 从头生成 32 个候选分子。",
+      "slots": 32
+    },
+    {
+      "name": "default",
+      "text": "EGFR C797，固定丙烯酰胺，从头生成候选分子",
+      "slots": 32
+    },
+    {
+      "name": "lower limit",
+      "text": "针对 EGFR C797，固定丙烯酰胺，用 PocketXMol 从头生成 1 个候选分子。",
+      "slots": 1
+    },
+    {
+      "name": "upper limit",
+      "text": "针对 EGFR C797，固定丙烯酰胺，用 PocketXMol 从头生成 96 个候选分子。",
+      "slots": 96
+    },
+    {
+      "name": "unsupported target",
+      "text": "针对 KRAS C797，固定丙烯酰胺，用 PocketXMol 从头生成 32 个候选分子。",
+      "slots": null
+    },
+    {
+      "name": "mutation",
+      "text": "针对 EGFR C797S，固定丙烯酰胺，用 PocketXMol 从头生成 32 个候选分子。",
+      "slots": null
+    },
+    {
+      "name": "different warhead",
+      "text": "针对 EGFR C797，固定氯乙酰胺，用 PocketXMol 从头生成 32 个候选分子。",
+      "slots": null
+    },
+    {
+      "name": "question",
+      "text": "请问针对 EGFR C797，固定丙烯酰胺，用 PocketXMol 从头生成 32 个候选分子。",
+      "slots": null
+    },
+    {
+      "name": "quote",
+      "text": "“针对 EGFR C797，固定丙烯酰胺，用 PocketXMol 从头生成 32 个候选分子。”",
+      "slots": null
+    },
+    {
+      "name": "negation",
+      "text": "不要针对 EGFR C797，固定丙烯酰胺，用 PocketXMol 从头生成 32 个候选分子。",
+      "slots": null
+    },
+    {
+      "name": "too many",
+      "text": "针对 EGFR C797，固定丙烯酰胺，用 PocketXMol 从头生成 97 个候选分子。",
+      "slots": null
+    },
+    {
+      "name": "zero",
+      "text": "针对 EGFR C797，固定丙烯酰胺，用 PocketXMol 从头生成 0 个候选分子。",
+      "slots": null
+    },
+    {
+      "name": "fractional",
+      "text": "针对 EGFR C797，固定丙烯酰胺，用 PocketXMol 从头生成 1.5 个候选分子。",
+      "slots": null
+    },
+    {
+      "name": "extra constraint",
+      "text": "针对 EGFR C797，固定丙烯酰胺，用 PocketXMol 从头生成 32 个候选分子。并保证无PAINS",
+      "slots": null
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "pocket_generator": {
+      "default": "pocketxmol",
+      "enum": [
+        "pocketxmol",
+        "pocket2mol",
+        "targetdiff",
+        "graphbp"
+      ],
+      "title": "Pocket Generator",
+      "type": "string"
+    },
+    "covalent_generator": {
+      "const": "covagen",
+      "default": "covagen",
+      "title": "Covalent Generator",
+      "type": "string"
+    },
+    "optimization_tools": {
+      "items": {
+        "enum": [
+          "reinvent4",
+          "difflinker"
+        ],
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Optimization Tools",
+      "type": "array"
+    },
+    "max_scaffolds": {
+      "default": 500,
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Max Scaffolds",
+      "type": "integer"
+    },
+    "max_covalent_candidates": {
+      "default": 1000,
+      "maximum": 20000,
+      "minimum": 1,
+      "title": "Max Covalent Candidates",
+      "type": "integer"
+    },
+    "max_optimized_candidates": {
+      "default": 500,
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Max Optimized Candidates",
+      "type": "integer"
+    },
+    "require_verified_covagen_adapter": {
+      "default": true,
+      "title": "Require Verified Covagen Adapter",
+      "type": "boolean"
+    }
+  },
+  "title": "DeNovoGenerationPolicy",
+  "type": "object"
+}

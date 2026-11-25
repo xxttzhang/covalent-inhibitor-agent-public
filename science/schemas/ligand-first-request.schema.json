@@ -1,0 +1,371 @@
+{
+  "$defs": {
+    "AttachmentRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "project_id": {
+          "title": "Project Id",
+          "type": "string"
+        },
+        "ligand_id": {
+          "title": "Ligand Id",
+          "type": "string"
+        },
+        "ligand_smiles": {
+          "title": "Ligand Smiles",
+          "type": "string"
+        },
+        "covalent_mode": {
+          "default": "either",
+          "enum": [
+            "reversible",
+            "irreversible",
+            "either"
+          ],
+          "title": "Covalent Mode",
+          "type": "string"
+        },
+        "pose_source": {
+          "default": "none",
+          "enum": [
+            "experimental",
+            "carsidock",
+            "karmadock",
+            "vina",
+            "glide",
+            "alphafold3",
+            "other",
+            "none"
+          ],
+          "title": "Pose Source",
+          "type": "string"
+        },
+        "pose_reference": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pose Reference"
+        },
+        "scaffold_core_atom_indices": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Scaffold Core Atom Indices",
+          "type": "array"
+        },
+        "key_interaction_atom_indices": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Key Interaction Atom Indices",
+          "type": "array"
+        },
+        "attachment_atom_indices": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Attachment Atom Indices",
+          "type": "array"
+        },
+        "protected_atom_indices": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Protected Atom Indices",
+          "type": "array"
+        },
+        "solvent_exposed_atom_indices": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Solvent Exposed Atom Indices",
+          "type": "array"
+        },
+        "distance_to_target_angstrom": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Distance To Target Angstrom",
+          "type": "object"
+        },
+        "vector_to_target_angle_degrees": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Vector To Target Angle Degrees",
+          "type": "object"
+        },
+        "steric_clash_fraction": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Steric Clash Fraction",
+          "type": "object"
+        },
+        "interaction_retention_fraction": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Interaction Retention Fraction",
+          "type": "object"
+        },
+        "synthetic_accessibility_score": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Synthetic Accessibility Score",
+          "type": "object"
+        },
+        "linker_environment": {
+          "default": "unknown",
+          "enum": [
+            "polar",
+            "hydrophobic",
+            "mixed",
+            "unknown"
+          ],
+          "title": "Linker Environment",
+          "type": "string"
+        },
+        "linker_topology_preferences": {
+          "items": {
+            "enum": [
+              "chain",
+              "cyclic"
+            ],
+            "type": "string"
+          },
+          "title": "Linker Topology Preferences",
+          "type": "array"
+        },
+        "warhead_names": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warhead Names",
+          "type": "array"
+        },
+        "max_plans": {
+          "default": 12,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Max Plans",
+          "type": "integer"
+        },
+        "route_override_approved": {
+          "default": false,
+          "title": "Route Override Approved",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "project_id",
+        "ligand_id",
+        "ligand_smiles"
+      ],
+      "title": "AttachmentRequest",
+      "type": "object"
+    },
+    "CovalentGeometryPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "max_scaffold_core_rmsd_angstrom": {
+          "default": 2.0,
+          "exclusiveMinimum": 0,
+          "title": "Max Scaffold Core Rmsd Angstrom",
+          "type": "number"
+        },
+        "min_parent_interaction_retention": {
+          "default": 0.7,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Min Parent Interaction Retention",
+          "type": "number"
+        },
+        "reaction_distance_window_angstrom": {
+          "default": [
+            1.7,
+            4.5
+          ],
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Reaction Distance Window Angstrom",
+          "type": "array"
+        },
+        "attack_angle_window_degrees": {
+          "default": [
+            80.0,
+            140.0
+          ],
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Attack Angle Window Degrees",
+          "type": "array"
+        },
+        "max_steric_clash_fraction": {
+          "default": 0.2,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Max Steric Clash Fraction",
+          "type": "number"
+        },
+        "require_linker_strain_assessment": {
+          "default": true,
+          "title": "Require Linker Strain Assessment",
+          "type": "boolean"
+        },
+        "require_pose_ensemble_consistency": {
+          "default": true,
+          "title": "Require Pose Ensemble Consistency",
+          "type": "boolean"
+        }
+      },
+      "title": "CovalentGeometryPolicy",
+      "type": "object"
+    },
+    "LigandFirstGenerationPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_tools": {
+          "items": {
+            "enum": [
+              "covalentizer",
+              "rdkit"
+            ],
+            "type": "string"
+          },
+          "title": "Baseline Tools",
+          "type": "array"
+        },
+        "optional_generation_tools": {
+          "items": {
+            "enum": [
+              "difflinker",
+              "reinvent4",
+              "delinker",
+              "fragmenstein",
+              "buildamol"
+            ],
+            "type": "string"
+          },
+          "title": "Optional Generation Tools",
+          "type": "array"
+        },
+        "allow_generative_models": {
+          "default": false,
+          "title": "Allow Generative Models",
+          "type": "boolean"
+        },
+        "max_generated_per_attachment": {
+          "default": 50,
+          "maximum": 1000,
+          "minimum": 1,
+          "title": "Max Generated Per Attachment",
+          "type": "integer"
+        },
+        "max_total_candidates": {
+          "default": 500,
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Max Total Candidates",
+          "type": "integer"
+        }
+      },
+      "title": "LigandFirstGenerationPolicy",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "attachment": {
+      "$ref": "#/$defs/AttachmentRequest"
+    },
+    "generation": {
+      "$ref": "#/$defs/LigandFirstGenerationPolicy"
+    },
+    "geometry_screen": {
+      "$ref": "#/$defs/CovalentGeometryPolicy"
+    },
+    "generated_candidates_path": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Generated Candidates Path"
+    },
+    "covalent_screen_results_path": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Covalent Screen Results Path"
+    },
+    "human_approved_generation": {
+      "default": false,
+      "title": "Human Approved Generation",
+      "type": "boolean"
+    },
+    "human_approved_covalent_screen": {
+      "default": false,
+      "title": "Human Approved Covalent Screen",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "request_id",
+    "project_id",
+    "attachment"
+  ],
+  "title": "LigandFirstRequest",
+  "type": "object"
+}

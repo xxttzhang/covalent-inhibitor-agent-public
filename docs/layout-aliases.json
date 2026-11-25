@@ -1,0 +1,50 @@
+[
+  {
+    "source": "covalent-library-first/configs/covindb/EGFR_C797_mvp_v1.yaml",
+    "destination": "science/configs/covindb/EGFR_C797_mvp_v1.yaml",
+    "target": "routes/library-first/covindb-configs/EGFR_C797_mvp_v1.yaml",
+    "target_sha256": "7673a3121cd63ab42283f43f64ed6e16224b8e3aefa818bfd729960606cf2bfe"
+  },
+  {
+    "source": "covalent-library-first/configs/library_first/EGFR_C797_covindb_pilot_v1.yaml",
+    "destination": "science/configs/library_first/EGFR_C797_covindb_pilot_v1.yaml",
+    "target": "routes/library-first/configs/EGFR_C797_covindb_pilot_v1.yaml",
+    "target_sha256": "fa60a3586136be4638cada20c1287b38ea28c530a722e7486aa463de2a2d7c12"
+  },
+  {
+    "source": "covalent-library-first/configs/ligand_first/EGFR_C797_smoke_continuation_20261008.yaml",
+    "destination": "science/configs/ligand_first/EGFR_C797_smoke_continuation_20261008.yaml",
+    "target": "routes/ligand-first/configs/EGFR_C797_smoke_continuation_20261008.yaml",
+    "target_sha256": "2a367975ab10c9946acb4076b9d95e084f92d9fce9275ee94ac53def296ab0fe"
+  },
+  {
+    "source": "covalent-library-first/configs/ligand_first/EGFR_C797_erlotinib_native_validation_v1.yaml",
+    "destination": "science/configs/ligand_first/EGFR_C797_erlotinib_native_validation_v1.yaml",
+    "target": "routes/ligand-first/configs/EGFR_C797_erlotinib_native_validation_v1.yaml",
+    "target_sha256": "5d1fbd28d3aa4ae34d8aff5bcd02eaba0ecfd27e46a20d051c88bbf9681ab698"
+  },
+  {
+    "source": "covalent-library-first/configs/ligand_first/EGFR_C797_smoke_post_covdock_20261008.yaml",
+    "destination": "science/configs/ligand_first/EGFR_C797_smoke_post_covdock_20261008.yaml",
+    "target": "routes/ligand-first/configs/EGFR_C797_smoke_post_covdock_20261008.yaml",
+    "target_sha256": "d9dd681b0be8b67941fbeff14c73f8d87ca11035b6013154744aeee68b1f21e2"
+  },
+  {
+    "source": "covalent-library-first/configs/ligand_first/EGFR_C797_erlotinib_v1.yaml",
+    "destination": "science/configs/ligand_first/EGFR_C797_erlotinib_v1.yaml",
+    "target": "routes/ligand-first/configs/EGFR_C797_erlotinib_v1.yaml",
+    "target_sha256": "539d1e60394eb5289e7dd9c11adc2f51e3aa0e82609a6e083552c24f4b4d4519"
+  },
+  {
+    "source": "covalent-library-first/ops/dispatch_ligand_hpc.py",
+    "destination": "science/ops/dispatch_ligand_hpc.py",
+    "target": "routes/ligand-first/ops/dispatch_ligand_hpc.py",
+    "target_sha256": "c375b5c11f4b9a02463aa1938598b218b29d9a7b58d9fef4fe7c351e753425e5"
+  },
+  {
+    "source": "covalent-library-first/ops/dispatch_ligand_smoke.py",
+    "destination": "science/ops/dispatch_ligand_smoke.py",
+    "target": "routes/ligand-first/ops/dispatch_ligand_smoke.py",
+    "target_sha256": "21e003295a6672464f010eaf992efdb7dba4ee7aebc711f5df7269827d7fd658"
+  }
+]

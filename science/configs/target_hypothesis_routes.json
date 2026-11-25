@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "profiles": [
+    {
+      "route": "library-first",
+      "target": "EGFR",
+      "site": "C797",
+      "taxon": 9606,
+      "uniprot_id": "P00533",
+      "tool": "inspire_screening_task",
+      "library": "CovInDB/Virtual_Screening_Library.csv",
+      "contract_source": "openscience-custom/backend/cli/integrations/inspire-screening/executor/target.ts",
+      "target_parameters": {
+        "target": "EGFR", "receptor": "1M17", "chain": "A", "residue": "CYS",
+        "residue_number": 797, "insertion_code": "", "numbering": "canonical",
+        "reaction_type": "Michael Addition"
+      }
+    },
+    {
+      "route": "ligand-first",
+      "target": "EGFR",
+      "site": "C797",
+      "taxon": 9606,
+      "uniprot_id": "P00533",
+      "parent_ligand": "erlotinib",
+      "new_campaign": true,
+      "config_path": "configs/ligand_first/EGFR_C797_erlotinib_native_validation_v1.yaml"
+    }
+  ]
+}

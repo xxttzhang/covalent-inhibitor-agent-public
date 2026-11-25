@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.covscreen/schemas/results-dashboard.schema.json",
+  "title": "Covalent discovery lightweight results dashboard",
+  "type": "object",
+  "required": ["schema_version", "tasks", "candidates", "outputs"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "campaign_name": { "type": "string" },
+    "target": { "type": "string" },
+    "residue": { "type": "string" },
+    "library_first": {
+      "type": "object",
+      "required": ["run_id", "state", "target", "source", "processed", "selected", "progress", "stages", "quality_gates"],
+      "properties": {
+        "run_id": { "type": "string" },
+        "state": { "enum": ["completed", "running", "queued", "failed"] },
+        "target": { "type": "string" },
+        "source": { "type": "string" },
+        "processed": { "type": "integer", "minimum": 0 },
+        "selected": { "type": "integer", "minimum": 0 },
+        "progress": { "type": "number", "minimum": 0, "maximum": 100 },
+        "quality": { "type": "object" },
+        "quality_gates": { "type": "object", "additionalProperties": { "type": "boolean" } },
+        "stages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "label", "status"],
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "type": "string" },
+              "status": { "enum": ["completed", "running", "queued", "pending", "failed"] },
+              "count": { "type": "integer", "minimum": 0 }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "route", "status", "progress"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "route": { "enum": ["library-first", "ligand-first", "de-novo"] },
+          "status": { "enum": ["completed", "running", "ready", "queued", "failed"] },
+          "progress": { "type": "number", "minimum": 0, "maximum": 100 },
+          "detail": { "type": "string" },
+          "updated_at": { "type": "string", "format": "date-time" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rank", "compound_id", "route", "target", "warhead", "engine", "score", "status"],
+        "properties": {
+          "rank": { "type": "integer", "minimum": 1 },
+          "compound_id": { "type": "string", "minLength": 1 },
+          "route": { "enum": ["library-first", "ligand-first", "de-novo"] },
+          "target": { "type": "string" },
+          "warhead": { "type": "string" },
+          "engine": { "type": "string" },
+          "score": { "type": ["number", "null"] },
+          "score_label": { "type": "string" },
+          "status": { "type": "string" },
+          "smiles": { "type": "string" },
+          "artifact": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "path"],
+        "properties": {
+          "label": { "type": "string" },
+          "path": { "type": "string" },
+          "kind": { "type": "string" },
+          "note": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

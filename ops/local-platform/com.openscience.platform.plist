@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Historical template only. Replace all /absolute paths outside source before installation. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.openscience.platform</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/bun</string>
+    <string>run</string>
+    <string>--conditions=browser</string>
+    <string>backend/cli/src/index.ts</string>
+    <string>serve</string>
+    <string>--port</string>
+    <string>4096</string>
+  </array>
+  <key>WorkingDirectory</key><string>/absolute/workspace/openscience-custom</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>COVALENT_APPROVAL_KEY_FILE</key><string>/absolute/home/.config/openscience/native-approval.key</string>
+    <key>COVALENT_PIPELINE_ROOT</key><string>/absolute/workspace/covalent-library-first</string>
+    <key>COVALENT_POSTPROCESS_PYTHON</key><string>/absolute/workspace/.cache/refinement-validation-python310/bin/python</string>
+    <key>PATH</key><string>/absolute/home/.local/bin:/absolute/home/.nvm/versions/node/v24.21.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>ThrottleInterval</key><integer>30</integer>
+  <key>ExitTimeOut</key><integer>30</integer>
+  <key>LimitLoadToSessionType</key><string>Aqua</string>
+  <key>StandardOutPath</key><string>/absolute/home/Library/Logs/OpenScience/platform.stdout.log</string>
+  <key>StandardErrorPath</key><string>/absolute/home/Library/Logs/OpenScience/platform.stderr.log</string>
+</dict>
+</plist>

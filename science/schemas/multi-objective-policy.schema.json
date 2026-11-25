@@ -1,0 +1,88 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "pocket_fit_weight": {
+      "default": 1.0,
+      "exclusiveMinimum": 0,
+      "title": "Pocket Fit Weight",
+      "type": "number"
+    },
+    "pose_quality_weight": {
+      "default": 1.0,
+      "exclusiveMinimum": 0,
+      "title": "Pose Quality Weight",
+      "type": "number"
+    },
+    "nac_geometry_weight": {
+      "default": 1.0,
+      "exclusiveMinimum": 0,
+      "title": "Nac Geometry Weight",
+      "type": "number"
+    },
+    "admet_weight": {
+      "default": 0.7,
+      "exclusiveMinimum": 0,
+      "title": "Admet Weight",
+      "type": "number"
+    },
+    "synthesis_weight": {
+      "default": 0.8,
+      "exclusiveMinimum": 0,
+      "title": "Synthesis Weight",
+      "type": "number"
+    },
+    "novelty_weight": {
+      "default": 0.3,
+      "minimum": 0,
+      "title": "Novelty Weight",
+      "type": "number"
+    },
+    "reactivity_risk_penalty": {
+      "default": 1.0,
+      "exclusiveMinimum": 0,
+      "title": "Reactivity Risk Penalty",
+      "type": "number"
+    },
+    "max_molecular_weight": {
+      "default": 650.0,
+      "exclusiveMinimum": 0,
+      "title": "Max Molecular Weight",
+      "type": "number"
+    },
+    "max_clogp": {
+      "default": 6.0,
+      "exclusiveMinimum": 0,
+      "title": "Max Clogp",
+      "type": "number"
+    },
+    "max_absolute_formal_charge": {
+      "default": 2,
+      "maximum": 6,
+      "minimum": 0,
+      "title": "Max Absolute Formal Charge",
+      "type": "integer"
+    },
+    "require_identity_and_valence_checks": {
+      "default": true,
+      "title": "Require Identity And Valence Checks",
+      "type": "boolean"
+    },
+    "require_structure_alert_reasons": {
+      "default": true,
+      "title": "Require Structure Alert Reasons",
+      "type": "boolean"
+    },
+    "require_duplicate_control": {
+      "default": true,
+      "title": "Require Duplicate Control",
+      "type": "boolean"
+    },
+    "require_score_component_logging": {
+      "default": true,
+      "title": "Require Score Component Logging",
+      "type": "boolean"
+    }
+  },
+  "title": "MultiObjectivePolicy",
+  "type": "object"
+}

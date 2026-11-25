@@ -1,0 +1,49 @@
+{
+  "schema": "drug-design-prepared-receptor-audit-policy-v3",
+  "method_revision": "3.0",
+  "preparation_policy": {
+    "path": "openscience-custom/backend/cli/integrations/discovery-platform/research-scientific-preparation-policy-v3.json",
+    "sha256": "e87f7b7157f79e337e09b3d9a62fdc3e31a8f492ba73aad763ec6f5f3a52e66d"
+  },
+  "auditor": {
+    "path": "openscience-custom/backend/cli/integrations/discovery-platform/research-scientific-audit-v3.py",
+    "sha256": "b235c602dda29e6a25360e9a927e3e1233e42197fd1e226b1a519482107955c8"
+  },
+  "initial_audit": {
+    "path": "reports/research-loop-20261013/receptor-preparation-v2/independent-audit-v2.1.json",
+    "sha256": "0857c57e278393b4c0937c04e79045f8071742ed66a2b97da25c9725e9df1ae8"
+  },
+  "initial_audit_cpu_seconds": 58.878732,
+  "previous_total_cpu_core_hours": 0.0205826411,
+  "geometry": {
+    "anchor_coordinate_tolerance_angstrom": 0.001,
+    "bond_relative_tolerance": 0.25,
+    "angle_relative_tolerance": 0.25,
+    "internal_clash_lower_tolerance": 0.3,
+    "aromatic_plane_tolerance_angstrom": 0.25,
+    "protein_vdw_ratio_minimum": 0.75
+  },
+  "packages": {
+    "rdkit": "2026.09.1",
+    "numpy": "2.3.5"
+  },
+  "required_checks": [
+    "unique_atom_identity",
+    "finite_coordinates",
+    "atom_provenance_and_original_coordinates",
+    "full_deposited_sequence_and_heavy_atom_completeness",
+    "polymer_connectivity",
+    "reactive_site_identity_and_prereaction_hydrogen",
+    "standard_amino_acid_stereochemistry",
+    "intramolecular_distance_bonds",
+    "intramolecular_distance_angles",
+    "intramolecular_distance_internal",
+    "aromatic_planarity"
+  ],
+  "audit_cpu_seconds_limit": 160,
+  "threads": 1,
+  "thresholds_changed_from_v1": false,
+  "coordinate_changes": false,
+  "input_binding": "Actual v3 preparation receipt SHA256 + every artifact SHA256 + frozen v2 initial input and receipt artifact lineage re-read before and after all scientific checks",
+  "failure_policy": "Any missing or failed check blocks scientific readiness. Preserve failed coordinates; no second optimization or threshold changes."
+}

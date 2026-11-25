@@ -1,0 +1,52 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "pocketxmol": {
+      "default": false,
+      "title": "Pocketxmol",
+      "type": "boolean"
+    },
+    "pocket2mol": {
+      "default": false,
+      "title": "Pocket2Mol",
+      "type": "boolean"
+    },
+    "targetdiff": {
+      "default": false,
+      "title": "Targetdiff",
+      "type": "boolean"
+    },
+    "graphbp": {
+      "default": false,
+      "title": "Graphbp",
+      "type": "boolean"
+    },
+    "covagen": {
+      "default": false,
+      "title": "Covagen",
+      "type": "boolean"
+    },
+    "rdkit": {
+      "default": false,
+      "title": "Rdkit",
+      "type": "boolean"
+    },
+    "reinvent4": {
+      "default": false,
+      "title": "Reinvent4",
+      "type": "boolean"
+    },
+    "difflinker": {
+      "default": false,
+      "title": "Difflinker",
+      "type": "boolean"
+    },
+    "carsidock_cov": {
+      "default": false,
+      "title": "Carsidock Cov",
+      "type": "boolean"
+    }
+  },
+  "title": "DeNovoGeneratorAvailability",
+  "type": "object"
+}

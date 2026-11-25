@@ -1,0 +1,25 @@
+schema_version: "1.0"
+campaign_id: egfr-c797-covindb-pilot-v1
+project_id: egfr-c797
+target_config: configs/covindb/EGFR_C797_mvp_v1.yaml
+pdb: projects/egfr-c797/ligand_first/source_structures/1M17.pdb
+reference_ligand: projects/egfr-c797/ligand_first/derived/1M17_AQ4_parent_pose.sdf
+af3_source_data_json: results/EGFR-mini/af3_egfr_mini_covalent/EGFR_100424266_protomer_0_covalent/EGFR_100424266_protomer_0_covalent_data.json
+covdock_receptor: results/EGFR-mini/covdock_lo_grid_seed/EGFR_covdock_lo_grid_seed_receptor_prepared.mae
+attachment_residue: "A:797"
+reaction_type: Michael Addition
+covres: "A:CYS:773"
+seed_run_ids:
+  prescreen: 20260901T042553-covindb-prescreen-30669aeda2
+prescreen_top_n: 500
+prescreen_max_rows: 10000
+recall_pool_n: 2000
+af3_top_n: 100
+covdock_top_n: 100
+final_n: 100
+seed: 20260725
+cuda_device_index: 0
+min_carsidock_success_rate: 0.75
+min_af3_coverage: 0.95
+min_covdock_success_rate: 0.80
+covdock_cpu_count: 55

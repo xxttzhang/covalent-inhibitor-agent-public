@@ -1,0 +1,53 @@
+{
+  "schema": "drug-design-prepared-receptor-audit-policy-v4",
+  "method_revision": "4.0",
+  "preparation_policy": {
+    "path": "openscience-custom/backend/cli/integrations/discovery-platform/research-scientific-preparation-policy-v4.json",
+    "sha256": "33f2c1ab7474b87119429a7c456cf9c757c8fd64fee23ea7d5f60fd740949bb7"
+  },
+  "auditor": {
+    "path": "openscience-custom/backend/cli/integrations/discovery-platform/research-scientific-audit-v4.py",
+    "sha256": "cf3f304e6a3e68392ce08b6c06e972af297066c8671e135b3c35eb184dcc878d"
+  },
+  "initial_audit": {
+    "path": "reports/research-loop-20261013/receptor-preparation-v3/independent-audit-v3.json",
+    "sha256": "9e82f218e1babd47b3a9141d732b34f2050db918a1eba900485a667c0dc5cb8e"
+  },
+  "initial_audit_cpu_seconds": 60.710342,
+  "previous_total_cpu_core_hours": 0.04251470221111111,
+  "geometry": {
+    "anchor_coordinate_tolerance_angstrom": 0.001,
+    "bond_relative_tolerance": 0.25,
+    "angle_relative_tolerance": 0.25,
+    "internal_clash_lower_tolerance": 0.3,
+    "aromatic_plane_tolerance_angstrom": 0.25,
+    "protein_vdw_ratio_minimum": 0.75
+  },
+  "packages": {
+    "rdkit": "2026.09.1",
+    "numpy": "2.3.5"
+  },
+  "required_checks": [
+    "unique_atom_identity",
+    "finite_coordinates",
+    "atom_provenance_and_original_coordinates",
+    "full_deposited_sequence_and_heavy_atom_completeness",
+    "polymer_connectivity",
+    "reactive_site_identity_and_prereaction_hydrogen",
+    "standard_amino_acid_stereochemistry",
+    "intramolecular_distance_bonds",
+    "intramolecular_distance_angles",
+    "intramolecular_distance_internal",
+    "aromatic_planarity"
+  ],
+  "audit_cpu_seconds_limit": 160,
+  "threads": 1,
+  "thresholds_changed_from_v1": false,
+  "coordinate_changes": false,
+  "input_binding": "Actual v4 receipt and every output plus v2 initial and v3 intermediate/receipt artifacts; rechecked before and after science. Scientific core unchanged from v3.",
+  "failure_policy": "Any missing or failed check blocks scientific readiness. Preserve failed coordinates; no second optimization or threshold changes.",
+  "scientific_core_source": {
+    "path": "openscience-custom/backend/cli/integrations/discovery-platform/research-scientific-audit-v3.py",
+    "sha256": "b235c602dda29e6a25360e9a927e3e1233e42197fd1e226b1a519482107955c8"
+  }
+}

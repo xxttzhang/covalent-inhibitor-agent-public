@@ -1,0 +1,219 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "source_type": {
+          "enum": [
+            "uniprot",
+            "pdb",
+            "publication",
+            "database",
+            "other"
+          ],
+          "title": "Source Type",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "retrieved_on": {
+          "format": "date",
+          "title": "Retrieved On",
+          "type": "string"
+        },
+        "doi": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Doi"
+        },
+        "pmid": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pmid"
+        },
+        "supports": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Supports",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "source_type",
+        "title",
+        "url",
+        "retrieved_on",
+        "supports"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "ReactiveSite": {
+      "additionalProperties": false,
+      "properties": {
+        "site_id": {
+          "title": "Site Id",
+          "type": "string"
+        },
+        "chain_id": {
+          "title": "Chain Id",
+          "type": "string"
+        },
+        "residue_name": {
+          "title": "Residue Name",
+          "type": "string"
+        },
+        "residue_number": {
+          "exclusiveMinimum": 0,
+          "title": "Residue Number",
+          "type": "integer"
+        },
+        "reactive_atom": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reactive Atom"
+        },
+        "nucleophile_present": {
+          "title": "Nucleophile Present",
+          "type": "boolean"
+        },
+        "reaction_hypothesis": {
+          "title": "Reaction Hypothesis",
+          "type": "string"
+        },
+        "sequence_context": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sequence Context"
+        }
+      },
+      "required": [
+        "site_id",
+        "chain_id",
+        "residue_name",
+        "residue_number",
+        "nucleophile_present",
+        "reaction_hypothesis"
+      ],
+      "title": "ReactiveSite",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "target_id": {
+      "title": "Target Id",
+      "type": "string"
+    },
+    "symbol": {
+      "title": "Symbol",
+      "type": "string"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "organism": {
+      "title": "Organism",
+      "type": "string"
+    },
+    "uniprot_id": {
+      "title": "Uniprot Id",
+      "type": "string"
+    },
+    "disease_context": {
+      "title": "Disease Context",
+      "type": "string"
+    },
+    "target_hypothesis": {
+      "title": "Target Hypothesis",
+      "type": "string"
+    },
+    "site": {
+      "$ref": "#/$defs/ReactiveSite"
+    },
+    "structures": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Structures",
+      "type": "array"
+    },
+    "citations": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "minItems": 2,
+      "title": "Citations",
+      "type": "array"
+    },
+    "known_unknowns": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Known Unknowns",
+      "type": "array"
+    }
+  },
+  "required": [
+    "target_id",
+    "symbol",
+    "name",
+    "organism",
+    "uniprot_id",
+    "disease_context",
+    "target_hypothesis",
+    "site",
+    "citations",
+    "known_unknowns"
+  ],
+  "title": "TargetPassport",
+  "type": "object"
+}

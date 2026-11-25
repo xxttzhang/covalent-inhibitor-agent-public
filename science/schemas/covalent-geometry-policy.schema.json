@@ -1,0 +1,73 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "max_scaffold_core_rmsd_angstrom": {
+      "default": 2.0,
+      "exclusiveMinimum": 0,
+      "title": "Max Scaffold Core Rmsd Angstrom",
+      "type": "number"
+    },
+    "min_parent_interaction_retention": {
+      "default": 0.7,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Min Parent Interaction Retention",
+      "type": "number"
+    },
+    "reaction_distance_window_angstrom": {
+      "default": [
+        1.7,
+        4.5
+      ],
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "Reaction Distance Window Angstrom",
+      "type": "array"
+    },
+    "attack_angle_window_degrees": {
+      "default": [
+        80.0,
+        140.0
+      ],
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "title": "Attack Angle Window Degrees",
+      "type": "array"
+    },
+    "max_steric_clash_fraction": {
+      "default": 0.2,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Max Steric Clash Fraction",
+      "type": "number"
+    },
+    "require_linker_strain_assessment": {
+      "default": true,
+      "title": "Require Linker Strain Assessment",
+      "type": "boolean"
+    },
+    "require_pose_ensemble_consistency": {
+      "default": true,
+      "title": "Require Pose Ensemble Consistency",
+      "type": "boolean"
+    }
+  },
+  "title": "CovalentGeometryPolicy",
+  "type": "object"
+}

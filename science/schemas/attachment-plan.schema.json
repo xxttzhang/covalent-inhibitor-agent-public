@@ -1,0 +1,329 @@
+{
+  "$defs": {
+    "AttachmentCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "rank": {
+          "minimum": 1,
+          "title": "Rank",
+          "type": "integer"
+        },
+        "ligand_atom_index": {
+          "minimum": 0,
+          "title": "Ligand Atom Index",
+          "type": "integer"
+        },
+        "atom_symbol": {
+          "title": "Atom Symbol",
+          "type": "string"
+        },
+        "exit_vector_class": {
+          "title": "Exit Vector Class",
+          "type": "string"
+        },
+        "modifiable_probability": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Modifiable Probability",
+          "type": "number"
+        },
+        "distance_to_residue_angstrom": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Distance To Residue Angstrom"
+        },
+        "vector_to_target_angle_degrees": {
+          "anyOf": [
+            {
+              "maximum": 180,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Vector To Target Angle Degrees"
+        },
+        "steric_clash_fraction": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Steric Clash Fraction"
+        },
+        "interaction_loss_fraction": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Interaction Loss Fraction"
+        },
+        "synthetic_accessibility_score": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Synthetic Accessibility Score"
+        },
+        "vector_score": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Vector Score",
+          "type": "number"
+        },
+        "evidence_complete": {
+          "title": "Evidence Complete",
+          "type": "boolean"
+        },
+        "warhead_name": {
+          "title": "Warhead Name",
+          "type": "string"
+        },
+        "reaction_class": {
+          "title": "Reaction Class",
+          "type": "string"
+        },
+        "covalent_mode": {
+          "enum": [
+            "reversible",
+            "irreversible"
+          ],
+          "title": "Covalent Mode",
+          "type": "string"
+        },
+        "linker_necessity": {
+          "enum": [
+            "direct_attachment",
+            "short_spacer",
+            "linker_required"
+          ],
+          "title": "Linker Necessity",
+          "type": "string"
+        },
+        "linker_heavy_atom_range": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Linker Heavy Atom Range",
+          "type": "array"
+        },
+        "linker_flexible_bond_range": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Linker Flexible Bond Range",
+          "type": "array"
+        },
+        "linker_topology_options": {
+          "items": {
+            "enum": [
+              "chain",
+              "cyclic"
+            ],
+            "type": "string"
+          },
+          "title": "Linker Topology Options",
+          "type": "array"
+        },
+        "linker_environment": {
+          "enum": [
+            "polar",
+            "hydrophobic",
+            "mixed",
+            "unknown"
+          ],
+          "title": "Linker Environment",
+          "type": "string"
+        },
+        "heuristic_score": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Heuristic Score",
+          "type": "number"
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Confidence",
+          "type": "string"
+        },
+        "rationale": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Rationale",
+          "type": "array"
+        },
+        "liabilities": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Liabilities",
+          "type": "array"
+        },
+        "required_controls": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Required Controls",
+          "type": "array"
+        }
+      },
+      "required": [
+        "rank",
+        "ligand_atom_index",
+        "atom_symbol",
+        "exit_vector_class",
+        "modifiable_probability",
+        "vector_score",
+        "evidence_complete",
+        "warhead_name",
+        "reaction_class",
+        "covalent_mode",
+        "linker_necessity",
+        "linker_heavy_atom_range",
+        "linker_flexible_bond_range",
+        "linker_topology_options",
+        "linker_environment",
+        "heuristic_score",
+        "confidence",
+        "rationale",
+        "liabilities",
+        "required_controls"
+      ],
+      "title": "AttachmentCandidate",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "ligand_id": {
+      "title": "Ligand Id",
+      "type": "string"
+    },
+    "canonical_smiles": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Canonical Smiles"
+    },
+    "status": {
+      "enum": [
+        "READY",
+        "NEEDS_STRUCTURE",
+        "BLOCKED",
+        "STOP"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "target_site": {
+      "title": "Target Site",
+      "type": "string"
+    },
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/AttachmentCandidate"
+      },
+      "title": "Candidates",
+      "type": "array"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    },
+    "rejected_atom_indices": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Rejected Atom Indices",
+      "type": "object"
+    },
+    "generated_at": {
+      "title": "Generated At",
+      "type": "string"
+    },
+    "disclaimer": {
+      "default": "Attachment rankings are medicinal-chemistry hypotheses. They are not reaction predictions, synthetic routes, or evidence of selective covalent engagement.",
+      "title": "Disclaimer",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "ligand_id",
+    "canonical_smiles",
+    "status",
+    "target_site",
+    "candidates",
+    "warnings",
+    "rejected_atom_indices"
+  ],
+  "title": "AttachmentPlanResult",
+  "type": "object"
+}

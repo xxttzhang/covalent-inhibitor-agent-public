@@ -1,0 +1,58 @@
+--- workspaces.py (Inspire CLI 7.1.14)
++++ workspaces.py (current console contract)
+@@ -32,6 +32,2 @@
+-    probe_ws_id = (workspace_id or "").strip()
+-    if not probe_ws_id or not _WS_ID_RE.match(probe_ws_id):
+-        probe_ws_id = str(getattr(session, "workspace_id", None) or "").strip()
+-    if not probe_ws_id or probe_ws_id == DEFAULT_WORKSPACE_ID:
+-        raise WorkspaceCapabilityError("No workspace is available for capability lookup.")
+-
++    # The new authenticated enumeration endpoint takes no workspace selector.
++    # It must also work during bootstrap, before a workspace is known.
+@@ -42 +38 @@
+-            "/api/v2/user?Action=GetRoutes",
++            "/api/v2/user?Action=ListAccessibleWorkspaces",
+@@ -44 +40 @@
+-            body={"WorkspaceId": probe_ws_id},
++            body={},
+@@ -47,0 +44,7 @@
++    return _accessible_workspace_entries(payload)
++
++
++def _accessible_workspace_entries(payload: Any) -> dict[str, dict[str, Any]]:
++    """Read the current console contract; unknown policy never becomes False."""
++    if not isinstance(payload, dict) or not isinstance(payload.get("items"), list):
++        raise WorkspaceCapabilityError("Missing accessible workspace list.")
+@@ -49,14 +52,11 @@
+-    for route_group in payload.get("routes") or []:
+-        if not isinstance(route_group, dict) or route_group.get("name") != "userWorkspaceList":
+-            continue
+-        for entry in route_group.get("routes") or []:
+-            if not isinstance(entry, dict):
+-                continue
+-            ws_id = str(entry.get("path") or "").strip()
+-            ws_name = str(entry.get("name") or "").strip()
+-            if ws_id and _WS_ID_RE.match(ws_id) and ws_id != DEFAULT_WORKSPACE_ID:
+-                results[ws_id] = {
+-                    "id": ws_id,
+-                    "name": ws_name,
+-                    "is_fair_workspace": entry.get("is_fair_workspace") is True,
+-                }
++    for entry in payload["items"]:
++        if not isinstance(entry, dict):
++            raise WorkspaceCapabilityError("Invalid accessible workspace entry.")
++        ws_id, ws_name, fair = (entry.get(key) for key in
++                                ("workspace_id", "name", "is_fair_workspace"))
++        if (not isinstance(ws_id, str) or not _WS_ID_RE.fullmatch(ws_id)
++                or ws_id == DEFAULT_WORKSPACE_ID or ws_id in results
++                or not isinstance(ws_name, str) or not ws_name.strip()
++                or type(fair) is not bool):
++            raise WorkspaceCapabilityError("Invalid accessible workspace identity or policy.")
++        results[ws_id] = {"id": ws_id, "name": ws_name, "is_fair_workspace": fair}
+@@ -81,4 +81,2 @@
+-    Primary method: ``user.GetRoutes``, which returns a ``userWorkspaceList``
+-    route group containing all workspaces the user can access. The Action is
+-    absent from discovery but live, and carries ``is_fair_workspace`` on each
+-    entry.
++    Uses the current console's ``user.ListAccessibleWorkspaces`` contract:
++    ``items`` with workspace_id, name and explicit boolean is_fair_workspace.

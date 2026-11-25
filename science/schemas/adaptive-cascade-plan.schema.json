@@ -1,0 +1,154 @@
+{
+  "$defs": {
+    "CascadeStage": {
+      "additionalProperties": false,
+      "properties": {
+        "order": {
+          "minimum": 0,
+          "title": "Order",
+          "type": "integer"
+        },
+        "stage_id": {
+          "title": "Stage Id",
+          "type": "string"
+        },
+        "objective": {
+          "title": "Objective",
+          "type": "string"
+        },
+        "engines": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Engines",
+          "type": "array"
+        },
+        "input_scope": {
+          "title": "Input Scope",
+          "type": "string"
+        },
+        "max_candidates": {
+          "minimum": 0,
+          "title": "Max Candidates",
+          "type": "integer"
+        },
+        "trigger": {
+          "title": "Trigger",
+          "type": "string"
+        },
+        "estimated_gpu_hours_upper": {
+          "minimum": 0,
+          "title": "Estimated Gpu Hours Upper",
+          "type": "number"
+        },
+        "requires_human_approval": {
+          "title": "Requires Human Approval",
+          "type": "boolean"
+        },
+        "status": {
+          "default": "planned",
+          "enum": [
+            "planned",
+            "skipped",
+            "blocked"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "rationale": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Rationale",
+          "type": "array"
+        }
+      },
+      "required": [
+        "order",
+        "stage_id",
+        "objective",
+        "engines",
+        "input_scope",
+        "max_candidates",
+        "trigger",
+        "estimated_gpu_hours_upper",
+        "requires_human_approval",
+        "rationale"
+      ],
+      "title": "CascadeStage",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "READY",
+        "CONDITIONAL",
+        "BLOCKED",
+        "STOP"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "library_size": {
+      "exclusiveMinimum": 0,
+      "title": "Library Size",
+      "type": "integer"
+    },
+    "stages": {
+      "items": {
+        "$ref": "#/$defs/CascadeStage"
+      },
+      "title": "Stages",
+      "type": "array"
+    },
+    "stop_conditions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Stop Conditions",
+      "type": "array"
+    },
+    "invariants": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Invariants",
+      "type": "array"
+    },
+    "generated_at": {
+      "title": "Generated At",
+      "type": "string"
+    },
+    "disclaimer": {
+      "default": "This cascade allocates computation; it does not establish potency, selectivity, target engagement, or experimental validation.",
+      "title": "Disclaimer",
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_id",
+    "project_id",
+    "decision",
+    "library_size",
+    "stages",
+    "stop_conditions",
+    "invariants"
+  ],
+  "title": "AdaptiveCascadePlan",
+  "type": "object"
+}

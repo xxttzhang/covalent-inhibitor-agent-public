@@ -1,0 +1,7 @@
+{
+  "name": "InterMol",
+  "source": "https://github.com/shirtsgroup/InterMol.git",
+  "commit": "7125764d42f6e6c589dc2d1df71e3e812b3a7b27",
+  "license": "MIT",
+  "scope": "Python package only; tests, example systems, Git metadata, and caches excluded"
+}

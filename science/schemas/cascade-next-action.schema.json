@@ -1,0 +1,52 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "enum": [
+        "run",
+        "repair_inputs",
+        "review",
+        "finalize",
+        "stop"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "stage_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Stage Id"
+    },
+    "max_candidates": {
+      "minimum": 0,
+      "title": "Max Candidates",
+      "type": "integer"
+    },
+    "rationale": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Rationale",
+      "type": "array"
+    },
+    "requires_human_approval": {
+      "title": "Requires Human Approval",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "action",
+    "max_candidates",
+    "rationale",
+    "requires_human_approval"
+  ],
+  "title": "CascadeNextAction",
+  "type": "object"
+}

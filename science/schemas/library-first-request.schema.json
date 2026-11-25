@@ -1,0 +1,162 @@
+{
+  "$defs": {
+    "EngineRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "engine": {
+          "enum": [
+            "carsidock-cov",
+            "carsidock-cov-rtmscore",
+            "alphafold3-mpae",
+            "schrodinger-covdock-vs",
+            "schrodinger-covdock-lo"
+          ],
+          "title": "Engine",
+          "type": "string"
+        },
+        "enabled": {
+          "default": true,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "parameters": {
+          "title": "Parameters",
+          "type": "object"
+        }
+      },
+      "required": [
+        "engine"
+      ],
+      "title": "EngineRequest",
+      "type": "object"
+    },
+    "ResourceBudget": {
+      "additionalProperties": false,
+      "properties": {
+        "max_gpu_hours": {
+          "minimum": 0.0,
+          "title": "Max Gpu Hours",
+          "type": "number"
+        },
+        "max_wall_hours": {
+          "exclusiveMinimum": 0.0,
+          "title": "Max Wall Hours",
+          "type": "number"
+        },
+        "max_concurrent_jobs": {
+          "exclusiveMinimum": 0,
+          "title": "Max Concurrent Jobs",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_gpu_hours",
+        "max_wall_hours",
+        "max_concurrent_jobs"
+      ],
+      "title": "ResourceBudget",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "target_passport_path": {
+      "title": "Target Passport Path",
+      "type": "string"
+    },
+    "receptor_path": {
+      "title": "Receptor Path",
+      "type": "string"
+    },
+    "ligand_table_path": {
+      "title": "Ligand Table Path",
+      "type": "string"
+    },
+    "compound_id_column": {
+      "default": "compound_id",
+      "title": "Compound Id Column",
+      "type": "string"
+    },
+    "smiles_column": {
+      "default": "standardized_smiles",
+      "title": "Smiles Column",
+      "type": "string"
+    },
+    "site_id": {
+      "title": "Site Id",
+      "type": "string"
+    },
+    "chain_id": {
+      "title": "Chain Id",
+      "type": "string"
+    },
+    "residue_name": {
+      "title": "Residue Name",
+      "type": "string"
+    },
+    "residue_number": {
+      "exclusiveMinimum": 0,
+      "title": "Residue Number",
+      "type": "integer"
+    },
+    "reactive_atom": {
+      "title": "Reactive Atom",
+      "type": "string"
+    },
+    "reaction_type": {
+      "title": "Reaction Type",
+      "type": "string"
+    },
+    "output_dir": {
+      "title": "Output Dir",
+      "type": "string"
+    },
+    "engines": {
+      "items": {
+        "$ref": "#/$defs/EngineRequest"
+      },
+      "minItems": 1,
+      "title": "Engines",
+      "type": "array"
+    },
+    "resource_budget": {
+      "$ref": "#/$defs/ResourceBudget"
+    },
+    "dry_run": {
+      "default": true,
+      "title": "Dry Run",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "request_id",
+    "project_id",
+    "target_passport_path",
+    "receptor_path",
+    "ligand_table_path",
+    "site_id",
+    "chain_id",
+    "residue_name",
+    "residue_number",
+    "reactive_atom",
+    "reaction_type",
+    "output_dir",
+    "engines",
+    "resource_budget"
+  ],
+  "title": "LibraryFirstRequest",
+  "type": "object"
+}

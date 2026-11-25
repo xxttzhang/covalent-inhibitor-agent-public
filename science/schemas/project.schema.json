@@ -1,0 +1,57 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "objective": {
+      "title": "Objective",
+      "type": "string"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "evidence_ready",
+        "planned",
+        "running",
+        "closed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "target_passport": {
+      "default": "target_passport.json",
+      "title": "Target Passport",
+      "type": "string"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    },
+    "benchmark_links": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Benchmark Links",
+      "type": "array"
+    }
+  },
+  "required": [
+    "project_id",
+    "title",
+    "objective"
+  ],
+  "title": "ResearchProject",
+  "type": "object"
+}

@@ -1,0 +1,19 @@
+{
+  "version": "docking-engine-policy-20261121",
+  "enabled_engines_by_route": {
+    "library-first": [
+      "carsidock-cov"
+    ]
+  },
+  "disabled_engines": [
+    "carsidock-cov"
+  ],
+  "preferred_pose_engine": "schrodinger-covdock-vs",
+  "automatic_fallback": false,
+  "native_vs_workflow_ready": true,
+  "reason": "Library-first explicitly re-enables CarsiDock-Cov for its versioned CarsiDock/RTMScore → CovDock-VS → CovDock-LO screening route. CarsiDock remains suspended for all other routes. AF3 is optional for the Library beta, and MD is outside this release scope. Existing route-specific scientific input checks and native approvals remain required. Policy configuration is not evidence of deployment or scientific acceptance.",
+  "preferred_pose_engine_scope": "Legacy default; Ligand-first uses the versioned ligand_docking_policy routing decision.",
+  "route_policy_modules": {
+    "ligand-first": "covscreen.ligand_docking_policy"
+  }
+}

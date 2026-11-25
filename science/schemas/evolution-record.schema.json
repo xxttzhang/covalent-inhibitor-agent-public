@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.covscreen/schemas/evolution-record.schema.json",
+  "title": "Future agent evolution proposal",
+  "description": "Logging schema only; automatic application is disabled in static phase.",
+  "type": "object",
+  "required": ["id", "proposal", "evidence", "risk", "status", "human_approval"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "proposal": {"type": "string", "minLength": 1},
+    "evidence": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "risk": {"type": "string", "enum": ["low", "medium", "high"]},
+    "evaluation_plan": {"type": "string"},
+    "status": {"type": "string", "enum": ["proposed", "rejected", "approved_for_offline_test", "retired"]},
+    "human_approval": {"const": false}
+  },
+  "additionalProperties": false
+}

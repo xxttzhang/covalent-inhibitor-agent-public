@@ -1,0 +1,105 @@
+{
+  "schema": "drug-design-scientific-manifest-v1",
+  "version": "egfr-c797-library-computational-shortlist-v1",
+  "scope": {
+    "conclusion": "computational-shortlist-only",
+    "max_candidates": 5,
+    "minimum_accepted_candidates": 1,
+    "source_rows": 20000,
+    "selection": "file_order_prefix",
+    "dataset_subset_sha256": "1c0a9ee130cbd762de6dc5d17c02b22419b9f008372f2765b966cc9fa5062c50",
+    "dataset_note": "A distinct 20k prefix was frozen on Inspire for the new pilot. Its downloaded manifest was locally rehashed; raw subset bytes remain remote and were not rehashed by this evaluator. This does not retroactively bind the historical run to that subset.",
+    "dataset_source_sha256": "83b2c5022a43c33aa98740ed30e7ccc02e92e2fc89a0aa17cd5f0bf36b411fe9",
+    "dataset_manifest_sha256": "ddcc8b43d9b235c2eb450d1194313a4f9e0855006f6ec51bc0585791aa823a19",
+    "dataset_manifest_path": "reports/research-loop-20261013/frozen-inputs/library-prefix-20000-v1.manifest.json"
+  },
+  "evaluator": {
+    "version": "egfr-library-scientific-evaluator-v1",
+    "path": "openscience-custom/backend/cli/integrations/discovery-platform/research-scientific-evaluator.py",
+    "sha256": "ba6829a12d96df43e6c3b53079c003dcb65bf88e13c94f2667db03f1687ae0b8",
+    "packages": {
+      "rdkit": "2026.09.1",
+      "numpy": "2.3.5",
+      "pyyaml": "6.0.3"
+    }
+  },
+  "target": {
+    "name": "EGFR",
+    "uniprot": "P00533",
+    "entry": "1M17",
+    "chain": "A",
+    "author_residue": 773,
+    "canonical_residue": 797,
+    "residue": "CYS",
+    "atom": "SG",
+    "construct": "Deposited 1M17 EGFR kinase construct; five cloning artifacts; no disease mutation claim",
+    "receptor_path": "science/projects/egfr-c797/ligand_first/source_structures/1M17.pdb",
+    "receptor_sha256": "5b020cd186307d657de80611793554b074f6936a3443d33f81d9b1a58004962e",
+    "coordinate_acceptance": "A single model, no alternate protein locations, every included protein ATOM occupancy >0 and <=1; all coordinates finite. The unprepared deposited receptor may fail; no silent preparation or threshold relaxation is performed."
+  },
+  "recipe": {
+    "path": "routes/library-first/covindb-configs/EGFR_C797_mvp_v1.yaml",
+    "sha256": "7673a3121cd63ab42283f43f64ed6e16224b8e3aefa818bfd729960606cf2bfe",
+    "reaction": "Michael Addition",
+    "warhead": "acrylamide"
+  },
+  "artifacts": {
+    "candidates_csv": "prepare/stage2_candidates.csv",
+    "candidates_sdf": "prepare/stage2_candidates.sdf",
+    "docking_csv": "carsidock/scores.csv",
+    "poses_sdf": "carsidock/carsidock.sdf",
+    "scoring_csv": "rtmscore/scores.csv"
+  },
+  "geometry": {
+    "anchor_coordinate_tolerance_angstrom": 0.001,
+    "bond_relative_tolerance": 0.25,
+    "angle_relative_tolerance": 0.25,
+    "internal_clash_lower_tolerance": 0.3,
+    "aromatic_plane_tolerance_angstrom": 0.25,
+    "protein_vdw_ratio_minimum": 0.75
+  },
+  "acceptance": {
+    "all_candidate_checks_must_pass": true,
+    "minimum_accepted_candidates_rationale": "Operational minimum for a nonempty shortlist, not an estimate of potency or binding probability. Applies prospectively; historical output never inherits this objective.",
+    "engine_scores": "Finite scores with exact per-candidate identity are required; no score value is treated as measured affinity.",
+    "failure_policy": "Missing or unsupported evidence is unknown; a fully checked round with zero passing candidates is a valid stop, not objective success.",
+    "retained_stereochemistry": "The consumed warhead double bond has no retained E/Z requirement. All other specified parent stereochemistry must match pose coordinates; new adduct stereochemistry is unassigned."
+  },
+  "provenance": [
+    {
+      "source": "https://www.rcsb.org/structure/1M17",
+      "use": "Deposited human EGFR kinase construct identity and no annotated mutations; exact local bytes independently pinned."
+    },
+    {
+      "source": "https://www.wwpdb.org/documentation/file-format-content/format33/sect3.html",
+      "use": "DBREF and SEQADV interpretation; local records bind author773 to UniProt797."
+    },
+    {
+      "source": "https://raw.githubusercontent.com/maabuu/posebusters/main/posebusters/config/dock.yml",
+      "use": "Published default heavy-atom distance/plane tolerances and protein vdW ratio. Numerical values copied into this immutable local manifest; remote main is not fetched at evaluation time."
+    },
+    {
+      "source": "https://arxiv.org/html/2308.05777v3",
+      "use": "PoseBusters physical plausibility rationale; this custom covalent adaptation is narrower and not validated by that noncovalent benchmark."
+    },
+    {
+      "source": "https://www.rdkit.org/docs/source/rdkit.Chem.rdDistGeom.html",
+      "use": "Bounds matrix lower/upper triangle semantics and frozen API options."
+    }
+  ],
+  "adaptations": [
+    "CarsiDock product identity must invert a unique terminal-sulfur Michael adduct to the exact full parent graph. Unsupported products are unknown.",
+    "The sulfur placeholder must coincide with PDB SG within 0.001 angstrom per-axis serialization tolerance; this is an identity check, not a physical bond cutoff.",
+    "The actual receptor CB/CA fragment is joined to the placeholder sulfur for local covalent bond/angle/internal bounds checks. Protein clash checks exclude only declared covalent 1-2/1-3 pairs.",
+    "Use fixed heavy-atom protein ATOM coordinates; receptor waters and co-crystallized reference ligand are not competitors in this shortlist check.",
+    "No ligand-specific parent RMSD, strain or interaction threshold is transferred from the Ligand-first route."
+  ],
+  "limitations": [
+    "This is a versioned local geometric shortlist policy, not full PoseBusters and not experimental activity, selectivity, kinetics, toxicity, synthesis or drug efficacy validation.",
+    "No redocking/native-pose RMSD, energy minimization, conformer energy ratio, full clash-volume, amide/double-bond planarity, molecular dynamics, or exhaustive stereoisomer/protonation ensemble is evaluated.",
+    "No universal covalent docking validation is claimed for the custom Michael-adduct boundary treatment.",
+    "The deposited receptor has 2.60 angstrom experimental resolution and is treated as rigid; biological flexibility and structure uncertainty remain.",
+    "Passing candidates require subsequent orthogonal/experimental validation. Historical local evaluation is retrospective and is not a prospective pilot.",
+    "This evaluator alone does not authenticate native delivery, release/contract/selection provenance, consumed budget, or a frozen library subset; the host must bind these separately."
+  ]
+}

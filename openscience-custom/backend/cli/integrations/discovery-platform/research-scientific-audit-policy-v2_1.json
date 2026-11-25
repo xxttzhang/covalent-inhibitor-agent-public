@@ -1,0 +1,64 @@
+{
+  "schema": "drug-design-prepared-receptor-audit-policy-v2",
+  "method_revision": "2.1",
+  "preparation_policy": {
+    "path": "openscience-custom/backend/cli/integrations/discovery-platform/research-scientific-preparation-policy-v2.json",
+    "sha256": "876d56591a282ddc203d316eb081c40189d5d49850e6d08dfb11a673e66f8034"
+  },
+  "auditor": {
+    "path": "openscience-custom/backend/cli/integrations/discovery-platform/research-scientific-audit-v2_1.py",
+    "sha256": "c2b5ab66eefffdde1de9d497528c2afe412e074ab2d19379d94506a04c9eb3f8"
+  },
+  "initial_audit": {
+    "path": "reports/research-loop-20261013/receptor-preparation-v2/independent-audit-v2.json",
+    "sha256": "033495893261735a97ac7050480b66b5671ccf84f18b25aa3fd2a79beb93b01c"
+  },
+  "initial_audit_cpu_seconds": 6.22504,
+  "geometry": {
+    "anchor_coordinate_tolerance_angstrom": 0.001,
+    "bond_relative_tolerance": 0.25,
+    "angle_relative_tolerance": 0.25,
+    "internal_clash_lower_tolerance": 0.3,
+    "aromatic_plane_tolerance_angstrom": 0.25,
+    "protein_vdw_ratio_minimum": 0.75
+  },
+  "packages": {
+    "rdkit": "2026.09.1",
+    "numpy": "2.3.5"
+  },
+  "required_checks": [
+    "unique_atom_identity",
+    "finite_coordinates",
+    "atom_provenance_and_original_coordinates",
+    "full_deposited_sequence_and_heavy_atom_completeness",
+    "polymer_connectivity",
+    "reactive_site_identity_and_prereaction_hydrogen",
+    "standard_amino_acid_stereochemistry",
+    "intramolecular_distance_bonds",
+    "intramolecular_distance_angles",
+    "intramolecular_distance_internal",
+    "aromatic_planarity"
+  ],
+  "audit_cpu_seconds_limit": 580,
+  "threads": 1,
+  "thresholds_changed_from_v1": false,
+  "coordinate_changes": false,
+  "revision_reason": "Correct wwPDB ILE CG1/CG2 template labeling; replace inappropriate intermolecular self-contact gate and truncated chemical neighborhoods by full intramolecular bounds. Original v2 preparation and initial audit are immutable.",
+  "method_sources": [
+    {
+      "url": "https://files.rcsb.org/ligands/view/ILE.cif",
+      "basis": "ILE CD1 is bonded to CG1; 2S,3S standard L-isoleucine atom naming"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/rdkit/rdkit/master/Code/GraphMol/DistGeomHelpers/BoundsMatrixBuilder.cpp",
+      "basis": "Full molecular graph determines 1-4/1-5 and longer-range intramolecular bounds; intermolecular van der Waals contact criterion is not transferable"
+    }
+  ],
+  "bounds_options": {
+    "set15bounds": true,
+    "scaleVDW": true,
+    "doTriangleSmoothing": true,
+    "useMacrocycle14config": false
+  },
+  "failure_policy": "Any required check missing or failed blocks admission. Preserve failed preparation; no automatic coordinate retry or threshold changes."
+}

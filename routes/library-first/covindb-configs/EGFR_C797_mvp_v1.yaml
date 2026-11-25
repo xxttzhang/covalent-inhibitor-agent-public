@@ -1,0 +1,36 @@
+schema_version: "1.0"
+protocol_version: covindb-library-first-mvp-v1
+target_id: EGFR
+site_id: EGFR_C797
+protein_chain: A
+residue_name: CYS
+residue_number: 797
+nucleophilic_atom: SG
+cysteine_sequence_index: 105
+structure:
+  pdb: projects/egfr-c797/ligand_first/source_structures/1M17.pdb
+  reference_ligand: projects/egfr-c797/ligand_first/derived/1M17_AQ4_parent_pose.sdf
+  author_chain: A
+  author_residue_number: 773
+  canonical_residue_number: 797
+  residue_number_offset: 24
+  carsidock_covres: "A:CYS:773"
+reaction_type: Michael Addition
+warhead_class: acrylamide
+warhead_smarts: "[C:1]=[C:2][C:3](=[O:4])[N:5]"
+reference_ligand: 0WN
+reference_smiles: "C#Cc1cccc(Nc2ncnc3cc(OCCOC)c(NC(=O)C=C)cc23)c1"
+lead_like:
+  min_mw: 180
+  max_mw: 650
+  min_logp: -1
+  max_logp: 6
+  max_tpsa: 160
+  max_rotors: 15
+  max_abs_formal_charge: 2
+stage_budgets:
+  stage2_top_n: 20000
+  stage3_carsidock_top_n: 2000
+  stage4_af3_top_n: 100
+  stage5_covdock_lo_top_n: 100
+random_seed: 20260725

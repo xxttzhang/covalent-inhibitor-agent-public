@@ -1,0 +1,12 @@
+{
+  "legacy_root": "/inspire/project/ligand/data",
+  "release_roots": {
+    "/inspire/project/ligand/data": "/inspire/project/ligand/releases"
+  },
+  "ssh": [
+    "ssh", "-T", "-o", "BatchMode=yes", "-o", "ConnectTimeout=20",
+    "-o", "ServerAliveInterval=30", "-o", "ServerAliveCountMax=3",
+    "-o", "StrictHostKeyChecking=yes", "inspire-notebook"
+  ],
+  "delivery": "/absolute/runtime/results/target-hypotheses"
+}

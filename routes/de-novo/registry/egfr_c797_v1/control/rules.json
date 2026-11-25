@@ -1,0 +1,44 @@
+{
+  "version": "egfr-fixed-acrylamide-v1",
+  "fixed_core_rmsd_max_A": 0.01,
+  "protein_clash_vdw_ratio_min": 0.75,
+  "adduct_14_vdw_ratio_min": 0.65,
+  "pre_SG_beta_distance_A": [
+    2.8,
+    4.0
+  ],
+  "pre_SG_beta_alpha_angle_deg": [
+    80,
+    140
+  ],
+  "adduct_SG_beta_distance_A": [
+    1.65,
+    2.05
+  ],
+  "adduct_SG_beta_alpha_angle_deg": [
+    90,
+    130
+  ],
+  "adduct_CB_SG_beta_angle_deg": [
+    85,
+    125
+  ],
+  "relaxation": {
+    "method": "UFF plus harmonic heavy-atom position restraint and fixed-protein heavy-atom repulsion; core fixed; no attractive protein energy",
+    "max_iterations": 1000,
+    "force_tolerance": 0.001,
+    "energy_tolerance": 1e-09,
+    "heavy_atom_restraint_k_kcal_mol_A2": 10.0,
+    "protein_repulsion_k_kcal_mol_A2": 50.0,
+    "repulsion_vdw_ratio": 0.8
+  },
+  "primary_endpoint": "RAW_ALL_CHECKS_PASS_PER_REQUESTED_SLOT",
+  "secondary_endpoint": "RELAXED_ALL_CHECKS_PASS_WITH_CONVERGENCE_PER_REQUESTED_SLOT",
+  "missing_or_error_policy": "FAIL_CLOSED",
+  "notes": [
+    "Geometry windows are preregistered engineering plausibility screens, not validated reactivity thresholds.",
+    "Covalent clash exclusions apply only graph-distance 1 or 2 through the designated external bond; graph-distance 3 uses 0.65. No whole-residue exclusions.",
+    "Pre-reaction distance/direction are imposed by reference-assisted fixed input; no independent site-discovery claim.",
+    "Raw adduct SDF is hydrogen-capped for intraligand checks; external covalent geometry and valence checked separately."
+  ]
+}

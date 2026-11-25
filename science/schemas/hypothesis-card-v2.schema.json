@@ -1,0 +1,89 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "statement": {
+      "title": "Statement",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "testing",
+        "supported",
+        "contradicted",
+        "retired"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "confidence": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "supporting_evidence": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Supporting Evidence",
+      "type": "array"
+    },
+    "disconfirming_evidence": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Disconfirming Evidence",
+      "type": "array"
+    },
+    "next_test": {
+      "title": "Next Test",
+      "type": "string"
+    },
+    "human_decision": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Human Decision"
+    }
+  },
+  "required": [
+    "id",
+    "project_id",
+    "statement",
+    "status",
+    "confidence",
+    "assumptions",
+    "supporting_evidence",
+    "disconfirming_evidence",
+    "next_test"
+  ],
+  "title": "HypothesisCard",
+  "type": "object"
+}

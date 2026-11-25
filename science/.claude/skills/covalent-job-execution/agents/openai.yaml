@@ -1,0 +1,4 @@
+interface:
+  display_name: "Covalent Job Execution"
+  short_description: "Run and monitor approved covalent discovery jobs"
+  default_prompt: "Use $covalent-job-execution to health-check, plan, approve, run, and monitor a registered covalent discovery job."

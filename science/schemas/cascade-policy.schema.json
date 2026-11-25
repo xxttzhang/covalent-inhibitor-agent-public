@@ -1,0 +1,66 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "max_failure_fraction": {
+      "default": 0.2,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Max Failure Fraction",
+      "type": "number"
+    },
+    "disagreement_threshold": {
+      "default": 0.35,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Disagreement Threshold",
+      "type": "number"
+    },
+    "geometry_pass_threshold": {
+      "default": 0.6,
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Geometry Pass Threshold",
+      "type": "number"
+    },
+    "primary_fraction": {
+      "default": 1.0,
+      "exclusiveMinimum": 0,
+      "maximum": 1,
+      "title": "Primary Fraction",
+      "type": "number"
+    },
+    "adjudication_fraction": {
+      "default": 0.05,
+      "exclusiveMinimum": 0,
+      "maximum": 0.25,
+      "title": "Adjudication Fraction",
+      "type": "number"
+    },
+    "precision_fraction": {
+      "default": 0.01,
+      "exclusiveMinimum": 0,
+      "maximum": 0.1,
+      "title": "Precision Fraction",
+      "type": "number"
+    },
+    "max_af3_candidates": {
+      "default": 100,
+      "minimum": 1,
+      "title": "Max Af3 Candidates",
+      "type": "integer"
+    },
+    "max_covdock_lo_candidates": {
+      "default": 50,
+      "minimum": 1,
+      "title": "Max Covdock Lo Candidates",
+      "type": "integer"
+    },
+    "allow_proprietary": {
+      "default": false,
+      "title": "Allow Proprietary",
+      "type": "boolean"
+    }
+  },
+  "title": "CascadePolicy",
+  "type": "object"
+}

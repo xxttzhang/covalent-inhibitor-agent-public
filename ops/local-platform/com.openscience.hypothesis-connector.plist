@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Historical template only. Replace all /absolute paths outside source before installation. -->
+<plist version="1.0"><dict>
+<key>Label</key><string>com.openscience.hypothesis-connector</string>
+<key>ProgramArguments</key><array>
+<string>/opt/homebrew/bin/bun</string>
+<string>/absolute/workspace/openscience-custom/backend/cli/integrations/hypothesis-connector/server.ts</string>
+</array>
+<key>WorkingDirectory</key><string>/absolute/workspace</string>
+<key>EnvironmentVariables</key><dict>
+<key>HYPOTHESIS_CONNECTOR_KEY_FILE</key><string>/absolute/home/.config/openscience/hypothesis-connector.key</string>
+<key>PATH</key><string>/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+</dict>
+<key>RunAtLoad</key><true/><key>KeepAlive</key><true/>
+<key>ThrottleInterval</key><integer>30</integer>
+<key>StandardOutPath</key><string>/absolute/home/Library/Logs/OpenScience/hypothesis-connector.stdout.log</string>
+<key>StandardErrorPath</key><string>/absolute/home/Library/Logs/OpenScience/hypothesis-connector.stderr.log</string>
+</dict></plist>

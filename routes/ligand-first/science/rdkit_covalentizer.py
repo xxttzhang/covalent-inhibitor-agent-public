@@ -1,0 +1,1 @@
+../src/covscreen_ligand_first/rdkit_covalentizer.py

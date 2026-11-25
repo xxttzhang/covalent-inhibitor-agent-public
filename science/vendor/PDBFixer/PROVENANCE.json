@@ -1,0 +1,7 @@
+{
+  "name": "PDBFixer",
+  "source": "https://github.com/openmm/pdbfixer",
+  "version": "1.12.0",
+  "license": "MIT",
+  "scope": "Core package, residue templates, and soft.xml only; UI, images, tests, metadata, and caches excluded"
+}

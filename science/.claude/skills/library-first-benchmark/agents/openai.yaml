@@ -1,0 +1,4 @@
+interface:
+  display_name: "Library-first Benchmark"
+  short_description: "Run and audit the frozen BTK-mini benchmark"
+  default_prompt: "Use $library-first-benchmark to inspect or validate the BTK-mini Library-first benchmark."

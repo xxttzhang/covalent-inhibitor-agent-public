@@ -1,0 +1,36 @@
+# Installation template: copy outside source and replace every /absolute path.
+project_root: /absolute/installation/2_agent/covalent-library-first
+random_seed: 20260725
+chunk_size: 100
+data:
+  covalid_protomers: data/raw/covalid/ja5c22222_si_004.xlsx
+  covalid_structures: data/raw/covalid/ja5c22222_si_002.xlsx
+  covalid_properties: data/raw/covalid/ja5c22222_si_003.xlsx
+  btk_mini_table: data/processed/BTK/btk_mini.parquet
+  btk_mini_sdf: data/processed/BTK/btk_mini.sdf
+carsidock:
+  repo: /absolute/installation/1_zhang/CarsiDock-Cov
+  checkpoint: /absolute/installation/1_zhang/CarsiDock-Cov/checkpoints/carsidock_230731.ckpt
+  rtmscore_checkpoint: /absolute/installation/1_zhang/CarsiDock-Cov/checkpoints/rtmscore_model1.pth
+  device: cuda
+  num_conformer: 1
+alphafold3:
+  runner: /absolute/installation/git_develop/af3/run_alphafold.py
+  python: /absolute/installation/conda_envs/af3_native/bin/python
+  model_dir: /absolute/installation/git_develop/af3/models
+  database_dir: /absolute/installation/public_databases
+schrodinger:
+  root: /absolute/installation/0_software/schrodinger2021-2
+  license_env: SCHROD_LICENSE_FILE
+  covdock_mode: enrichment
+  status: NOT_CONFIGURED
+btk_mini:
+  active_protomers: 20
+  decoys_per_active: 20
+  expected_total: 420
+  chunk_size: 100
+  target_regex: "(?i)BTK"
+  site_regex: "(?i)C481|BTK"
+scoring:
+  score_direction: higher_is_better
+  adjusted_logauc_formula: dude_logauc_0.001_v1

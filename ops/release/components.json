@@ -1,0 +1,25 @@
+{
+  "source_roots": [
+    "openscience-custom",
+    "science",
+    "routes",
+    "ops",
+    "configs",
+    "docs",
+    "evaluations"
+  ],
+  "source_files": [
+    ".gitignore",
+    "AGENTS.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "PUBLIC_DISTRIBUTION.md",
+    "README.md",
+    "SECURITY.md",
+    "THIRD_PARTY_NOTICES.md",
+    "VERSION",
+    "pytest-ligand-release.ini"
+  ],
+  "source_exclude": [],
+  "source_links": {}
+}

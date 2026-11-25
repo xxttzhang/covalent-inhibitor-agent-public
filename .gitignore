@@ -1,0 +1,27 @@
+# Source and fixtures are versioned; runtime evidence lives outside this tree.
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.turbo/
+dist/
+dist-*/
+coverage/
+test-results/
+playwright-report/
+.DS_Store
+.env
+.env.*
+!.env.example
+openscience.json
+!openscience-custom/frontend/ui/src/theme/themes/openscience.json
+*.provider.json
+native-approval.key
+.secrets/
+.runtime/
+# Generated executor bundles are rebuilt locally, not publication sources.
+openscience-custom/backend/cli/integrations/inspire-screening/executor/.runtime-*.mjs
+*.egg-info/
+build/
+*.tsbuildinfo

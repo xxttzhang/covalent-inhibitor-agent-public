@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Drug design research decision proposal v1",
+  "description": "Model-authored proposal only. Host-owned capability, evidence, budget, approval and state validation is mandatory before execution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "loop_id", "state_revision", "action", "capability_id", "plan_id", "arguments", "evidence_refs", "rationale", "alternatives", "expected_observation", "outcome", "missing_inputs"],
+  "properties": {
+    "schema": {"const": "drug-design-decision-v1"},
+    "loop_id": {"type": ["string", "null"], "minLength": 1},
+    "state_revision": {"type": ["integer", "null"], "minimum": 0},
+    "action": {"enum": ["inspect_evidence", "prepare_action", "execute_prepared_action", "wait_for_job", "evaluate_results", "finish", "blocked", "request_user_input"]},
+    "capability_id": {"type": ["string", "null"], "minLength": 1},
+    "plan_id": {"type": ["string", "null"], "minLength": 1},
+    "arguments": {"type": "object", "description": "Must also pass the real capability schema supplied by the host; never interpreted as arbitrary commands."},
+    "evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "rationale": {"type": "string", "minLength": 1, "maxLength": 1200, "description": "Brief evidence-linked decision justification, not private chain of thought."},
+    "alternatives": {
+      "type": "array", "maxItems": 2,
+      "items": {"type": "object", "additionalProperties": false,
+        "required": ["option", "reason_not_selected"],
+        "properties": {"option": {"type": "string", "minLength": 1}, "reason_not_selected": {"type": "string", "minLength": 1, "maxLength": 500}}}
+    },
+    "expected_observation": {"type": ["string", "null"], "minLength": 1, "maxLength": 1000},
+    "outcome": {"enum": [null, "objective_met", "no_viable_candidate", "insufficient_evidence", "budget_exhausted", "capability_unavailable", "integrity_failure", "user_cancelled", "approval_declined"]},
+    "missing_inputs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"action": {"enum": ["inspect_evidence", "prepare_action", "execute_prepared_action", "wait_for_job", "evaluate_results"]}}},
+      "then": {"properties": {"loop_id": {"type": "string"}, "state_revision": {"type": "integer"}, "capability_id": {"type": "string"}, "outcome": {"type": "null"}, "expected_observation": {"type": "string"}, "missing_inputs": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"action": {"const": "execute_prepared_action"}}},
+      "then": {"properties": {"plan_id": {"type": "string"}, "arguments": {"maxProperties": 0}, "evidence_refs": {"minItems": 1}}},
+      "else": {"properties": {"plan_id": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"action": {"enum": ["finish", "blocked", "request_user_input"]}}},
+      "then": {"properties": {"capability_id": {"type": "null"}, "arguments": {"maxProperties": 0}, "expected_observation": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"action": {"const": "finish"}}},
+      "then": {"properties": {"loop_id": {"type": "string"}, "state_revision": {"type": "integer"}, "outcome": {"enum": ["objective_met", "no_viable_candidate", "insufficient_evidence", "budget_exhausted", "user_cancelled", "approval_declined"]}, "evidence_refs": {"minItems": 1}, "missing_inputs": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"action": {"const": "blocked"}}},
+      "then": {"properties": {"outcome": {"enum": ["capability_unavailable", "integrity_failure", "insufficient_evidence"]}, "missing_inputs": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"action": {"const": "request_user_input"}}},
+      "then": {"properties": {"loop_id": {"type": "string"}, "state_revision": {"type": "integer"}, "outcome": {"type": "null"}, "missing_inputs": {"minItems": 1}}}
+    },
+    {
+      "if": {"anyOf": [{"properties": {"loop_id": {"type": "null"}}}, {"properties": {"state_revision": {"type": "null"}}}]},
+      "then": {"properties": {"action": {"const": "blocked"}, "loop_id": {"type": "null"}, "state_revision": {"type": "null"}}}
+    }
+  ]
+}

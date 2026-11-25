@@ -1,0 +1,11 @@
+{
+  "fixture_type": "synthetic_software_contract_not_scientific_evidence",
+  "captured_before_migration": true,
+  "producer_sha256": "3e05de05cff6fef5b4d10f29e977d11e678a644c150918ca2f0de5a13c4dd462",
+  "files": {
+    "bound.json": "017518e2f3702b310c5a4810630422c71481b0a362cfe252d40b88a61f0e30a8",
+    "bound.sqlite": "5f25e9ef70037c1da745df8310e9f4cc63a25e31f73cf7656bac755cf571601f",
+    "unbound.json": "54bb94e7550cb32e72982e1582d2715209d44e2fe5d90c478e6ff44ce0fffe7e",
+    "unbound.sqlite": "422e33bdcc658cd60faba71f33754ec5d0cd9e80f34ad60b58be5d362254fb37"
+  }
+}

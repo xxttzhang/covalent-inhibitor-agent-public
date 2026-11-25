@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.covscreen/schemas/experiment-passport.schema.json",
+  "title": "Experiment passport",
+  "type": "object",
+  "required": ["id", "objective", "protocol_version", "inputs", "outputs", "status", "provenance"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "protocol_version": {"type": "string", "minLength": 1},
+    "inputs": {"type": "array", "items": {"type": "string"}},
+    "outputs": {"type": "array", "items": {"type": "string"}},
+    "status": {"type": "string", "enum": ["planned", "running", "completed", "failed", "cancelled"]},
+    "failure_reason": {"type": ["string", "null"]},
+    "resource_budget": {"type": "object"},
+    "provenance": {"type": "object"}
+  },
+  "additionalProperties": false
+}

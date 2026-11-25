@@ -1,0 +1,219 @@
+{
+  "task_id": "screen-aaaaaaaaaaaaaaaaaaaaaaaa",
+  "scope": {
+    "schema": "bound-refinement-planning-v1",
+    "operation_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "parent": {
+      "schema": "library-workflow-execution-reference-v1",
+      "workflow_id": "library-flow-aaaaaaaaaaaaaaaaaaaaaaaa",
+      "revision": 7,
+      "operation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "intent_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "plan_sha256": "e7dcaca485e592e96eae8d51651d91b443660f1c1129506cb58e7fa32646399c"
+    },
+    "selection": {
+      "selection_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "selection_manifest_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "policy": {
+        "max_candidates": 8,
+        "max_fraction": 0.25,
+        "disagreement_threshold": 0.5,
+        "top_fraction": 0.2,
+        "uncertainty_count": 4,
+        "consensus_count": 2,
+        "diversity_count": 2
+      },
+      "reason": "Retain reviewed candidates for historical compatibility verification"
+    },
+    "max_points": 2,
+    "scientific_review": "Historical proposal fixture generated before policy migration"
+  },
+  "proposal": {
+    "version": "refinement-proposal-v4-bound-selection",
+    "planning_scope": {
+      "schema": "bound-refinement-planning-v1",
+      "operation_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "parent": {
+        "schema": "library-workflow-execution-reference-v1",
+        "workflow_id": "library-flow-aaaaaaaaaaaaaaaaaaaaaaaa",
+        "revision": 7,
+        "operation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "intent_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "plan_sha256": "e7dcaca485e592e96eae8d51651d91b443660f1c1129506cb58e7fa32646399c"
+      },
+      "selection": {
+        "selection_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "selection_manifest_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "policy": {
+          "max_candidates": 8,
+          "max_fraction": 0.25,
+          "disagreement_threshold": 0.5,
+          "top_fraction": 0.2,
+          "uncertainty_count": 4,
+          "consensus_count": 2,
+          "diversity_count": 2
+        },
+        "reason": "Retain reviewed candidates for historical compatibility verification"
+      },
+      "max_points": 2,
+      "scientific_review": "Historical proposal fixture generated before policy migration"
+    },
+    "task_id": "screen-aaaaaaaaaaaaaaaaaaaaaaaa",
+    "plan_digest": "e7dcaca485e592e96eae8d51651d91b443660f1c1129506cb58e7fa32646399c",
+    "created_at": 1000,
+    "state": "BLOCKED",
+    "selection": {
+      "selection_verified": true,
+      "selection_id": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "source_task_id": "screen-aaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_plan_digest": "e7dcaca485e592e96eae8d51651d91b443660f1c1129506cb58e7fa32646399c",
+      "source_manifest_digest": "83778f3886fbded63ea1ae170855b108c34bbd363aa169c9737cf86bcf2b8bcd",
+      "selection_manifest_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "status": "SUBSET_PROPOSED",
+      "policy": {
+        "max_candidates": 8,
+        "max_fraction": 0.25,
+        "disagreement_threshold": 0.5,
+        "top_fraction": 0.2,
+        "uncertainty_count": 4,
+        "consensus_count": 2,
+        "diversity_count": 2
+      },
+      "input_count": 8,
+      "eligible_count": 8,
+      "excluded_count": 0,
+      "selected_count": 2,
+      "effective_cap": 2,
+      "artifact_directory": "/inspire/root/tasks/screen-aaaaaaaaaaaaaaaaaaaaaaaa/selections/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "input": {
+        "path": "/inspire/root/tasks/screen-aaaaaaaaaaaaaaaaaaaaaaaa/selections/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee/candidates.parquet",
+        "sha256": "74275bdaf27d8571f6a0817e9044b2d12ef87419e4e0ce4df31224e2b5e3be4a",
+        "identity_sha256": "7f195b765b4a93a5f7ce843b07679a9c53969819a015803e5ee4d3db7c3f3d98",
+        "eligible_count": 8,
+        "candidates": [
+          {
+            "input_sdf_index": 1,
+            "compound_id": "fixture-one",
+            "selection_channel": "rank_disagreement_review",
+            "carsidock_rank_fraction": 0,
+            "rtmscore_rank_fraction": 1,
+            "rank_disagreement": 1
+          },
+          {
+            "input_sdf_index": 3,
+            "compound_id": "fixture-three",
+            "selection_channel": "consensus_sentinel",
+            "carsidock_rank_fraction": 0.1,
+            "rtmscore_rank_fraction": 0.1,
+            "rank_disagreement": 0
+          }
+        ],
+        "calibrated_uncertainty": false
+      },
+      "calibrated_uncertainty": false,
+      "gpu_submitted": false,
+      "refinement_approval_required": true,
+      "limitations": [
+        "Local fixture; rank disagreement is not calibrated uncertainty"
+      ]
+    },
+    "environment": null,
+    "resource_quote_recorded_at": 1000,
+    "stages": [
+      {
+        "engine": "af3",
+        "minutes": 120,
+        "resource": {
+          "kind": "job",
+          "workspace": "分布式训练空间",
+          "project": "fixture",
+          "group": "CPU",
+          "quota": "1,10,200",
+          "image": "fixture",
+          "image_type": "SOURCE_OFFICIAL",
+          "priority": 4,
+          "points_per_hour": 1
+        },
+        "question": "评估同一靶点与候选复合物的结构、界面置信度和共价几何；不是亲和力或活性验证。",
+        "parameters": {
+          "num_recycles": 3,
+          "num_seeds": 1,
+          "num_diffusion_samples": 5,
+          "run_data_pipeline": false,
+          "random_seed": 20260725,
+          "min_coverage": 0.95
+        },
+        "required_checks": [
+          "原始分子 ID / 输入哈希对应",
+          "置信度从原始 AF3 文件回读",
+          "目标 Cys 共价连接、碰撞和几何质量"
+        ],
+        "proposed_points": 2,
+        "candidate_count": 2
+      },
+      {
+        "engine": "covdock",
+        "minutes": 420,
+        "resource": {
+          "kind": "hpc",
+          "workspace": "CPU资源空间",
+          "project": "fixture",
+          "group": "CPU",
+          "quota": "0,4,16",
+          "image": "fixture",
+          "image_type": "SOURCE_OFFICIAL",
+          "priority": 4,
+          "points_per_hour": 0
+        },
+        "question": "在明确受体和反应类型下评估共价对接姿势及能量/应变；不是实验活性证明。",
+        "parameters": {
+          "mode": "LO",
+          "reaction": "Michael Addition",
+          "input_score_source": "core",
+          "max_structures_per_compound": 1,
+          "min_coverage": 0.95
+        },
+        "required_checks": [
+          "原始分子 ID 与同一候选子集对应",
+          "受体 A:797 Cys / SG 对应",
+          "实际共价姿势、键几何、碰撞与应变"
+        ],
+        "proposed_points": 0,
+        "candidate_count": 2
+      }
+    ],
+    "proposed_points": 2,
+    "runtime_basis": "AF3 工程时限 120 分钟；CovDock 2021-2 本机帮助注明 leadopt 约 1–3 小时/分子，当前 NJOBS=1，按每个候选 180 分钟加准备余量 60 分钟提案，本次 420 分钟。不是实测耗时或完成保证；排队另计，必须重新审批，不继承旧授权。",
+    "pricing_basis": "当前配额每实例时价 × 两阶段时限；不是账户账单上限或已批准预算。价格、镜像和可调度性在审批/提交前须重新核实。",
+    "selection_basis": "沿用工作流已评审的确切候选及显式策略：Retain reviewed candidates for historical compatibility verification。未重新选择或填补名额；排名分歧不是已校准不确定性。",
+    "execution": "AF3 后 CovDock 对同一分子子集分别评估；CovDock 使用已登记受体和核心候选，不默认采用 AF3 姿势。质量拒绝保留，执行失败停止。",
+    "quality_policy": {
+      "state": "PROPOSED_NOT_APPROVED",
+      "policy": {
+        "version": "refinement-structural-qc-v1",
+        "scope": "bounded_structural_qc_not_affinity",
+        "min_covalent_distance_angstrom": 1.5,
+        "max_covalent_distance_angstrom": 2.2,
+        "min_nonbonded_distance_angstrom": 1.2,
+        "covdock_max_strain_kcal_mol": 20,
+        "af3_confidence": "report_only_no_affinity_cutoff",
+        "missing_measurements": "reject_candidate",
+        "limitation": "full_topology_stereochemistry_and_affinity_not_verified"
+      },
+      "policy_digest": "f52bad7a4bdb40e0975abd9a3404d08f9d2f14242161e69bf9045054bb3d14d2",
+      "min_engine_coverage": 0.95,
+      "note": "拟定结构质检：目标共价连接明确，反应原子距离 1.5–2.2 Å，蛋白–配体非反应重原子近接触至少 1.2 Å；AF3 无已报告碰撞；CovDock 应变 ≤20 kcal/mol 且必要测量齐全。沿用项目几何/应变规则，未经活性标定。AF3 置信度描述性报告，不设亲和力阈值；未验证完整拓扑/立体化学。95% 仅为引擎覆盖率，全部候选被质检淘汰也必须如实保留。实际执行前须与候选、资源一并获得一次确认。"
+    },
+    "blockers": [
+      "ENVIRONMENT_DIAGNOSTIC_UNAVAILABLE"
+    ],
+    "ready_for_approval": false,
+    "resource_approval_granted": false,
+    "compute_submitted": false,
+    "startup_checks": "获批的 AF3 作业内先核验单 GPU、参数加载和设备运算；CovDock 作业内复核官方授权。检查时间计入阶段时限，失败停止且保留记录。CPU 诊断不是 GPU 推理完成。",
+    "report_ready": false,
+    "scientific_quality_verified": false,
+    "next": "先解决列出的运行条件并冻结科学质量门槛，再由平台展示一次两阶段原生审批；本提案不会创建可执行任务。"
+  },
+  "digest": "b39e851e4b9d6a0df2127495e0f1672412b00874e07039cb8df26a199086e178"
+}

@@ -1,0 +1,8 @@
+{
+  "notebook": "your-cpu-notebook",
+  "workspace": "CPU资源空间",
+  "account": "default",
+  "cli": "/absolute/path/to/inspire",
+  "identity_file": "/absolute/path/to/registered-ssh-identity",
+  "port": 22222
+}

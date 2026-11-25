@@ -1,0 +1,30 @@
+configfile: "configs/global.yaml"
+
+rule all:
+    input:
+        "data/processed/BTK/btk_mini.parquet",
+        "data/processed/BTK/chunks/chunk_manifest.parquet",
+
+rule prepare_btk_mini:
+    input:
+        "data/interim/covalid_protomers.parquet"
+    output:
+        "data/processed/BTK/btk_mini.parquet"
+    shell:
+        "python scripts/prepare_btk_mini.py"
+
+rule prepare_library:
+    input:
+        "data/processed/BTK/btk_mini.parquet"
+    output:
+        "data/processed/BTK/btk_mini.sdf"
+    shell:
+        "python scripts/prepare_library.py"
+
+rule split_library:
+    input:
+        "data/processed/BTK/btk_mini.sdf"
+    output:
+        "data/processed/BTK/chunks/chunk_manifest.parquet"
+    shell:
+        "python scripts/split_library.py && python scripts/make_chunk_sdfs.py"

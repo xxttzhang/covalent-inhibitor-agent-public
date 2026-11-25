@@ -1,0 +1,4 @@
+interface:
+  display_name: "共享共价位点发现"
+  short_description: "预测、评估并冻结候选半胱氨酸位点"
+  default_prompt: "Use $shared-covalent-site-discovery to discover and freeze candidate covalent cysteine sites for the specified target before choosing a design route."

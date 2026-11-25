@@ -1,0 +1,91 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "completed_stage_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Completed Stage Id"
+    },
+    "input_count": {
+      "minimum": 0,
+      "title": "Input Count",
+      "type": "integer"
+    },
+    "success_count": {
+      "minimum": 0,
+      "title": "Success Count",
+      "type": "integer"
+    },
+    "failed_count": {
+      "minimum": 0,
+      "title": "Failed Count",
+      "type": "integer"
+    },
+    "rank_disagreement": {
+      "anyOf": [
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rank Disagreement"
+    },
+    "geometry_pass_fraction": {
+      "anyOf": [
+        {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Geometry Pass Fraction"
+    },
+    "unresolved_candidate_count": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Unresolved Candidate Count",
+      "type": "integer"
+    },
+    "remaining_gpu_hours": {
+      "minimum": 0,
+      "title": "Remaining Gpu Hours",
+      "type": "number"
+    },
+    "explicit_failure_table": {
+      "default": false,
+      "title": "Explicit Failure Table",
+      "type": "boolean"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "input_count",
+    "success_count",
+    "failed_count",
+    "remaining_gpu_hours"
+  ],
+  "title": "CascadeObservation",
+  "type": "object"
+}

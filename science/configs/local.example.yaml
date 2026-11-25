@@ -1,0 +1,11 @@
+project_root: /absolute/path/to/science
+covindb:
+  virtual_screening_library: /absolute/path/to/CovInDB/Virtual_Screening_Library.csv
+  knowledge_base: /absolute/path/to/CovInDB/CovInDB_All.csv
+python: /absolute/path/to/covdock_env/bin/python
+cluster:
+  scheduler: lsf
+  queue: newgpu
+  gpu_resource: "num=1:mode=exclusive_process"
+  cpu_per_job: 4
+  memory_gb: 32

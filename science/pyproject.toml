@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "covalent-library-first"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+  "rdkit==2025.3.6",
+  "numpy==2.2.6",
+  "pandas==2.3.3",
+  "pyarrow==25.0.1",
+  "scipy==1.15.2",
+  "scikit-learn==1.7.2",
+  "pydantic>=2,<3",
+  "PyYAML>=6,<7",
+  "openpyxl>=3.1,<4",
+  "biopython>=1.82,<2",
+  "requests>=2.31,<3",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9", "jsonschema>=4.23,<5"]
+receptor = ["openmm==8.6.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+covscreen = ["data/*.tsv", "data/*.manifest.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "../routes/library-first/src", "../routes/ligand-first/src", "../routes/de-novo/src"]
+testpaths = ["tests", "../routes/library-first/tests", "../routes/ligand-first/tests", "../routes/de-novo/tests/test_de_novo_route.py"]
+addopts = "-ra"

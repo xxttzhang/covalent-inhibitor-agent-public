@@ -1,0 +1,39 @@
+import path from "node:path"
+import { stages, recommendation } from "../../openscience-custom/frontend/workspace/src/discovery/model"
+import { discoveryProject, routeDefaults } from "../../openscience-custom/tooling/util/src/discovery-config"
+
+const root = path.resolve(import.meta.dir, "../..")
+const directory = path.join(root, "openscience-custom")
+const data = await Bun.file(path.join(directory, "results/discovery/de-novo.json")).json()
+const settings = {
+  schema: "discovery-project-v1", project: data.project,
+  target: { id: "egfr-c797", name: "EGFR", label: "EGFR · C797", site: { chain: "A", residue: "CYS", number: 797, atom: "SG" } },
+  routes: {
+    "library-first": { ...routeDefaults["library-first"], dataPath: "results/discovery/library-first.json", filter: "A 级候选",
+      subtitle: "库筛选 · AF3 预测 · 共价对接 · 姿势一致性复核", evidenceHeading: "MD 前需补全受体", evidenceNote: "AF3 与 CovDock 构象分别展示，未作对齐叠合。构象一致性不表示已验证活性。" },
+    "ligand-first": { ...routeDefaults["ligand-first"], dataPath: "results/discovery/ligand-first.json", filter: "已保留对接结果",
+      subtitle: "厄洛替尼母体 · 共价化候选 · AF3 预测 · CovDock 复核", evidenceHeading: "AF3 局部几何待审阅", evidenceNote: "AF3 Cys105 对应 C797；请按结构编号查看位点。两种构象分别展示，未作对齐叠合。" },
+    "de-novo": { ...routeDefaults["de-novo"], dataPath: "results/discovery/de-novo.json", defaultStage: "amber", filter: "MD 入选",
+      subtitle: "固定丙烯酰胺 · PocketXMol 生成 · 共价构象复核 · 重复分子动力学",
+      featured: data.candidates.filter((c: { md: unknown }) => c.md).map((c: { row: { compound_id: string } }) => c.row.compound_id),
+      recommendations: Object.fromEntries(data.candidates.map((c: { row: { compound_id: string } }) => [c.row.compound_id, recommendation(c.row.compound_id)])),
+      stages: stages(data),
+      stats: [{ label: "有效生成候选", value: "{{generation.passed}}", unit: "/ {{generation.slots}}", note: "原始结构验收 · 全部保留" },
+        { label: "本轮 MD 入选", value: "{{featuredCount}}", unit: "个分子", note: "另含阿法替尼匹配对照" },
+        { label: "独立重复轨迹", value: "{{md.replicas}}", unit: "/ 12", note: "四体系 · 各 3 × 10 ns" },
+        { label: "累计生产段采样", value: "{{md.totalNs}}", unit: "ns", note: "计算完成 · 采样仍需扩展" }],
+      md: { statePath: "results/discovery/md-analysis.json", artifactPrefix: "results/discovery/md-analysis", expectedReplicas: 12,
+        durationNote: "3 × 10 ns · 不等于已收敛", contactNote: "排除 C797 及跨共价键邻近原子对",
+        samplingNote: "独立重复 n = 3；帧之间存在相关性。图表生成完成不代表已收敛，自动报告待科学审阅。",
+        footer: "沿用 OpenMM / OPLS_2005 / TIP3P；新 Amber 参数化单独记录。当前指标用于结构采样评估，不转换为亲和力或活性排序。",
+        sourceNote: "本批 OpenMM / OPLS_2005 · 12 条轨迹 · 12,000 帧 · PNG / SVG / CSV / 报告随包下载。",
+        rmsfNote: "本批未导出 RMSF，需回到原始坐标计算；未混入短轨迹结果。",
+        reportName: "REPLICA_STRUCTURAL_TRACES.png", reportLabel: "打开完整 12 条轨迹图" },
+    },
+  },
+}
+const config = discoveryProject.parse(settings)
+const destination = path.join(directory, ".discovery/project.json")
+if (await Bun.file(destination).exists()) throw Error("Project configuration already exists")
+await Bun.write(destination, JSON.stringify(config, null, 2))
+console.log(JSON.stringify({ saved: destination, project: config.project }))

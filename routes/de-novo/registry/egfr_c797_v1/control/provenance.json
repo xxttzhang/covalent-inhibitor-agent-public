@@ -1,0 +1,9 @@
+{
+  "source_evaluator_sha256": "eaac72c0f8291c99c5c3ca87820febfac8fad47823f1e7c863345ef655f44d42",
+  "source_freeze_sha256": "2eace0b63562ee1a888ede011e02cb359fa9e243df666e2ebb55c4f295cf416c",
+  "changes": [
+    "Use packaged assets instead of historical experiment paths",
+    "Propagate provenance failures to both acceptance stages",
+    "Reject upstream bad reconstruction at both stages"
+  ]
+}

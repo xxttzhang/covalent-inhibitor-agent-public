@@ -1,0 +1,51 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "baseline_tools": {
+      "items": {
+        "enum": [
+          "covalentizer",
+          "rdkit"
+        ],
+        "type": "string"
+      },
+      "title": "Baseline Tools",
+      "type": "array"
+    },
+    "optional_generation_tools": {
+      "items": {
+        "enum": [
+          "difflinker",
+          "reinvent4",
+          "delinker",
+          "fragmenstein",
+          "buildamol"
+        ],
+        "type": "string"
+      },
+      "title": "Optional Generation Tools",
+      "type": "array"
+    },
+    "allow_generative_models": {
+      "default": false,
+      "title": "Allow Generative Models",
+      "type": "boolean"
+    },
+    "max_generated_per_attachment": {
+      "default": 50,
+      "maximum": 1000,
+      "minimum": 1,
+      "title": "Max Generated Per Attachment",
+      "type": "integer"
+    },
+    "max_total_candidates": {
+      "default": 500,
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Max Total Candidates",
+      "type": "integer"
+    }
+  },
+  "title": "LigandFirstGenerationPolicy",
+  "type": "object"
+}

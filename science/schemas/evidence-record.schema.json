@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.covscreen/schemas/evidence-record.schema.json",
+  "title": "Evidence record",
+  "type": "object",
+  "required": ["id", "evidence_type", "citation", "created_at"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "evidence_type": {
+      "type": "string",
+      "enum": ["publication", "measurement", "score_table", "metrics", "frozen_manifest", "structure", "other"]
+    },
+    "citation": {"type": "string", "minLength": 1},
+    "locator": {"type": ["string", "null"]},
+    "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "metadata": {"type": "object"},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false
+}

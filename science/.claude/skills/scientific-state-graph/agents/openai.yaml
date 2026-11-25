@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scientific State Graph"
+  short_description: "Curate auditable drug-discovery evidence states"
+  default_prompt: "Use $scientific-state-graph to initialize, ingest, query, or audit the scientific evidence graph."

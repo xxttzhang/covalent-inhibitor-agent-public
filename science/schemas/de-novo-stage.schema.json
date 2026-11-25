@@ -1,0 +1,85 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "order": {
+      "minimum": 0,
+      "title": "Order",
+      "type": "integer"
+    },
+    "stage_id": {
+      "title": "Stage Id",
+      "type": "string"
+    },
+    "objective": {
+      "title": "Objective",
+      "type": "string"
+    },
+    "tools": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Tools",
+      "type": "array"
+    },
+    "input_scope": {
+      "title": "Input Scope",
+      "type": "string"
+    },
+    "outputs": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Outputs",
+      "type": "array"
+    },
+    "completion_evidence": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Completion Evidence",
+      "type": "array"
+    },
+    "max_candidates": {
+      "minimum": 0,
+      "title": "Max Candidates",
+      "type": "integer"
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "ready",
+        "planned",
+        "blocked",
+        "skipped"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "requires_human_approval": {
+      "title": "Requires Human Approval",
+      "type": "boolean"
+    },
+    "rationale": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Rationale",
+      "type": "array"
+    }
+  },
+  "required": [
+    "order",
+    "stage_id",
+    "objective",
+    "tools",
+    "input_scope",
+    "outputs",
+    "completion_evidence",
+    "max_candidates",
+    "status",
+    "requires_human_approval",
+    "rationale"
+  ],
+  "title": "DeNovoStage",
+  "type": "object"
+}

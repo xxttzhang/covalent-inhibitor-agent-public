@@ -1,0 +1,232 @@
+{
+  "$defs": {
+    "DeNovoGeneratorAvailability": {
+      "additionalProperties": false,
+      "properties": {
+        "pocketxmol": {
+          "default": false,
+          "title": "Pocketxmol",
+          "type": "boolean"
+        },
+        "pocket2mol": {
+          "default": false,
+          "title": "Pocket2Mol",
+          "type": "boolean"
+        },
+        "targetdiff": {
+          "default": false,
+          "title": "Targetdiff",
+          "type": "boolean"
+        },
+        "graphbp": {
+          "default": false,
+          "title": "Graphbp",
+          "type": "boolean"
+        },
+        "covagen": {
+          "default": false,
+          "title": "Covagen",
+          "type": "boolean"
+        },
+        "rdkit": {
+          "default": false,
+          "title": "Rdkit",
+          "type": "boolean"
+        },
+        "reinvent4": {
+          "default": false,
+          "title": "Reinvent4",
+          "type": "boolean"
+        },
+        "difflinker": {
+          "default": false,
+          "title": "Difflinker",
+          "type": "boolean"
+        },
+        "carsidock_cov": {
+          "default": false,
+          "title": "Carsidock Cov",
+          "type": "boolean"
+        }
+      },
+      "title": "DeNovoGeneratorAvailability",
+      "type": "object"
+    },
+    "DeNovoStage": {
+      "additionalProperties": false,
+      "properties": {
+        "order": {
+          "minimum": 0,
+          "title": "Order",
+          "type": "integer"
+        },
+        "stage_id": {
+          "title": "Stage Id",
+          "type": "string"
+        },
+        "objective": {
+          "title": "Objective",
+          "type": "string"
+        },
+        "tools": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tools",
+          "type": "array"
+        },
+        "input_scope": {
+          "title": "Input Scope",
+          "type": "string"
+        },
+        "outputs": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Outputs",
+          "type": "array"
+        },
+        "completion_evidence": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Completion Evidence",
+          "type": "array"
+        },
+        "max_candidates": {
+          "minimum": 0,
+          "title": "Max Candidates",
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "completed",
+            "ready",
+            "planned",
+            "blocked",
+            "skipped"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "requires_human_approval": {
+          "title": "Requires Human Approval",
+          "type": "boolean"
+        },
+        "rationale": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Rationale",
+          "type": "array"
+        }
+      },
+      "required": [
+        "order",
+        "stage_id",
+        "objective",
+        "tools",
+        "input_scope",
+        "outputs",
+        "completion_evidence",
+        "max_candidates",
+        "status",
+        "requires_human_approval",
+        "rationale"
+      ],
+      "title": "DeNovoStage",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "STOP",
+        "BLOCKED",
+        "NEEDS_POCKET_DEFINITION",
+        "NEEDS_GENERATOR_ASSETS",
+        "READY_FOR_SCAFFOLD_GENERATION",
+        "READY_FOR_WARHEAD_CONSTRAINT",
+        "READY_FOR_MULTIOBJECTIVE_OPTIMIZATION",
+        "READY_FOR_COVALENT_SCREEN",
+        "READY_FOR_POOL_HANDOFF"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "availability": {
+      "$ref": "#/$defs/DeNovoGeneratorAvailability"
+    },
+    "missing_assets": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Assets",
+      "type": "array"
+    },
+    "stages": {
+      "items": {
+        "$ref": "#/$defs/DeNovoStage"
+      },
+      "title": "Stages",
+      "type": "array"
+    },
+    "invariants": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Invariants",
+      "type": "array"
+    },
+    "stop_conditions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Stop Conditions",
+      "type": "array"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    },
+    "generated_at": {
+      "title": "Generated At",
+      "type": "string"
+    },
+    "disclaimer": {
+      "default": "De novo models propose candidates; they do not establish binding, selective covalent reaction, synthetic accessibility, safety, novelty, or experimental validation.",
+      "title": "Disclaimer",
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_id",
+    "project_id",
+    "decision",
+    "availability",
+    "missing_assets",
+    "stages",
+    "invariants",
+    "stop_conditions",
+    "warnings"
+  ],
+  "title": "DeNovoPlan",
+  "type": "object"
+}

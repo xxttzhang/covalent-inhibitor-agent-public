@@ -1,0 +1,177 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "ligand_id": {
+      "title": "Ligand Id",
+      "type": "string"
+    },
+    "ligand_smiles": {
+      "title": "Ligand Smiles",
+      "type": "string"
+    },
+    "covalent_mode": {
+      "default": "either",
+      "enum": [
+        "reversible",
+        "irreversible",
+        "either"
+      ],
+      "title": "Covalent Mode",
+      "type": "string"
+    },
+    "pose_source": {
+      "default": "none",
+      "enum": [
+        "experimental",
+        "carsidock",
+        "karmadock",
+        "vina",
+        "glide",
+        "alphafold3",
+        "other",
+        "none"
+      ],
+      "title": "Pose Source",
+      "type": "string"
+    },
+    "pose_reference": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pose Reference"
+    },
+    "scaffold_core_atom_indices": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Scaffold Core Atom Indices",
+      "type": "array"
+    },
+    "key_interaction_atom_indices": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Key Interaction Atom Indices",
+      "type": "array"
+    },
+    "attachment_atom_indices": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Attachment Atom Indices",
+      "type": "array"
+    },
+    "protected_atom_indices": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Protected Atom Indices",
+      "type": "array"
+    },
+    "solvent_exposed_atom_indices": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Solvent Exposed Atom Indices",
+      "type": "array"
+    },
+    "distance_to_target_angstrom": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Distance To Target Angstrom",
+      "type": "object"
+    },
+    "vector_to_target_angle_degrees": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Vector To Target Angle Degrees",
+      "type": "object"
+    },
+    "steric_clash_fraction": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Steric Clash Fraction",
+      "type": "object"
+    },
+    "interaction_retention_fraction": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Interaction Retention Fraction",
+      "type": "object"
+    },
+    "synthetic_accessibility_score": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Synthetic Accessibility Score",
+      "type": "object"
+    },
+    "linker_environment": {
+      "default": "unknown",
+      "enum": [
+        "polar",
+        "hydrophobic",
+        "mixed",
+        "unknown"
+      ],
+      "title": "Linker Environment",
+      "type": "string"
+    },
+    "linker_topology_preferences": {
+      "items": {
+        "enum": [
+          "chain",
+          "cyclic"
+        ],
+        "type": "string"
+      },
+      "title": "Linker Topology Preferences",
+      "type": "array"
+    },
+    "warhead_names": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warhead Names",
+      "type": "array"
+    },
+    "max_plans": {
+      "default": 12,
+      "maximum": 100,
+      "minimum": 1,
+      "title": "Max Plans",
+      "type": "integer"
+    },
+    "route_override_approved": {
+      "default": false,
+      "title": "Route Override Approved",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "project_id",
+    "ligand_id",
+    "ligand_smiles"
+  ],
+  "title": "AttachmentRequest",
+  "type": "object"
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.covscreen/schemas/candidate-passport.schema.json",
+  "title": "Covalent candidate passport",
+  "type": "object",
+  "required": ["compound_id", "identity", "warhead", "target", "route_results", "provenance"],
+  "properties": {
+    "compound_id": {"type": "string", "minLength": 1},
+    "identity": {
+      "type": "object",
+      "required": ["canonical_smiles"],
+      "properties": {
+        "canonical_smiles": {"type": "string"},
+        "inchikey": {"type": ["string", "null"]},
+        "stereochemistry_status": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "warhead": {
+      "type": "object",
+      "required": ["class", "reactive_atoms"],
+      "properties": {
+        "class": {"type": "string"},
+        "reactive_atoms": {"type": "array", "items": {"type": "integer"}}
+      },
+      "additionalProperties": true
+    },
+    "target": {
+      "type": "object",
+      "required": ["symbol", "residue"],
+      "properties": {
+        "symbol": {"type": "string"},
+        "residue": {"type": "string"},
+        "chain": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "route_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["engine", "status", "score_direction"],
+        "properties": {
+          "engine": {"type": "string"},
+          "status": {"type": "string"},
+          "raw_score": {"type": ["number", "null"]},
+          "score_direction": {"type": "string", "enum": ["lower_is_better", "higher_is_better"]},
+          "failure_reason": {"type": ["string", "null"]}
+        },
+        "additionalProperties": true
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["benchmark_freeze_id"],
+      "properties": {
+        "benchmark_freeze_id": {"type": "string"},
+        "artifact_sha256": {"type": "array", "items": {"type": "string", "pattern": "^[a-f0-9]{64}$"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

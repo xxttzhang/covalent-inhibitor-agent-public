@@ -1,0 +1,400 @@
+{
+  "$defs": {
+    "DeNovoGenerationPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "pocket_generator": {
+          "default": "pocketxmol",
+          "enum": [
+            "pocketxmol",
+            "pocket2mol",
+            "targetdiff",
+            "graphbp"
+          ],
+          "title": "Pocket Generator",
+          "type": "string"
+        },
+        "covalent_generator": {
+          "const": "covagen",
+          "default": "covagen",
+          "title": "Covalent Generator",
+          "type": "string"
+        },
+        "optimization_tools": {
+          "items": {
+            "enum": [
+              "reinvent4",
+              "difflinker"
+            ],
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Optimization Tools",
+          "type": "array"
+        },
+        "max_scaffolds": {
+          "default": 500,
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Max Scaffolds",
+          "type": "integer"
+        },
+        "max_covalent_candidates": {
+          "default": 1000,
+          "maximum": 20000,
+          "minimum": 1,
+          "title": "Max Covalent Candidates",
+          "type": "integer"
+        },
+        "max_optimized_candidates": {
+          "default": 500,
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Max Optimized Candidates",
+          "type": "integer"
+        },
+        "require_verified_covagen_adapter": {
+          "default": true,
+          "title": "Require Verified Covagen Adapter",
+          "type": "boolean"
+        }
+      },
+      "title": "DeNovoGenerationPolicy",
+      "type": "object"
+    },
+    "MultiObjectivePolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "pocket_fit_weight": {
+          "default": 1.0,
+          "exclusiveMinimum": 0,
+          "title": "Pocket Fit Weight",
+          "type": "number"
+        },
+        "pose_quality_weight": {
+          "default": 1.0,
+          "exclusiveMinimum": 0,
+          "title": "Pose Quality Weight",
+          "type": "number"
+        },
+        "nac_geometry_weight": {
+          "default": 1.0,
+          "exclusiveMinimum": 0,
+          "title": "Nac Geometry Weight",
+          "type": "number"
+        },
+        "admet_weight": {
+          "default": 0.7,
+          "exclusiveMinimum": 0,
+          "title": "Admet Weight",
+          "type": "number"
+        },
+        "synthesis_weight": {
+          "default": 0.8,
+          "exclusiveMinimum": 0,
+          "title": "Synthesis Weight",
+          "type": "number"
+        },
+        "novelty_weight": {
+          "default": 0.3,
+          "minimum": 0,
+          "title": "Novelty Weight",
+          "type": "number"
+        },
+        "reactivity_risk_penalty": {
+          "default": 1.0,
+          "exclusiveMinimum": 0,
+          "title": "Reactivity Risk Penalty",
+          "type": "number"
+        },
+        "max_molecular_weight": {
+          "default": 650.0,
+          "exclusiveMinimum": 0,
+          "title": "Max Molecular Weight",
+          "type": "number"
+        },
+        "max_clogp": {
+          "default": 6.0,
+          "exclusiveMinimum": 0,
+          "title": "Max Clogp",
+          "type": "number"
+        },
+        "max_absolute_formal_charge": {
+          "default": 2,
+          "maximum": 6,
+          "minimum": 0,
+          "title": "Max Absolute Formal Charge",
+          "type": "integer"
+        },
+        "require_identity_and_valence_checks": {
+          "default": true,
+          "title": "Require Identity And Valence Checks",
+          "type": "boolean"
+        },
+        "require_structure_alert_reasons": {
+          "default": true,
+          "title": "Require Structure Alert Reasons",
+          "type": "boolean"
+        },
+        "require_duplicate_control": {
+          "default": true,
+          "title": "Require Duplicate Control",
+          "type": "boolean"
+        },
+        "require_score_component_logging": {
+          "default": true,
+          "title": "Require Score Component Logging",
+          "type": "boolean"
+        }
+      },
+      "title": "MultiObjectivePolicy",
+      "type": "object"
+    },
+    "PocketDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "structure_reference": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Structure Reference"
+        },
+        "source": {
+          "default": "none",
+          "enum": [
+            "experimental",
+            "p2rank",
+            "prankweb",
+            "other",
+            "none"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "center_xyz_angstrom": {
+          "anyOf": [
+            {
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Center Xyz Angstrom"
+        },
+        "box_size_xyz_angstrom": {
+          "anyOf": [
+            {
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Box Size Xyz Angstrom"
+        },
+        "pocket_residue_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Pocket Residue Ids",
+          "type": "array"
+        },
+        "key_interaction_residue_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Key Interaction Residue Ids",
+          "type": "array"
+        },
+        "hydrophobic_regions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Hydrophobic Regions",
+          "type": "array"
+        },
+        "hydrogen_bond_donors": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Hydrogen Bond Donors",
+          "type": "array"
+        },
+        "hydrogen_bond_acceptors": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Hydrogen Bond Acceptors",
+          "type": "array"
+        },
+        "excluded_volume_reference": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Excluded Volume Reference"
+        },
+        "warhead_reachable_region_defined": {
+          "default": false,
+          "title": "Warhead Reachable Region Defined",
+          "type": "boolean"
+        }
+      },
+      "title": "PocketDefinition",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "covalent_mode": {
+      "default": "either",
+      "enum": [
+        "reversible",
+        "irreversible",
+        "either"
+      ],
+      "title": "Covalent Mode",
+      "type": "string"
+    },
+    "allowed_warheads": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Allowed Warheads",
+      "type": "array"
+    },
+    "pocket": {
+      "$ref": "#/$defs/PocketDefinition"
+    },
+    "generation": {
+      "$ref": "#/$defs/DeNovoGenerationPolicy"
+    },
+    "objectives": {
+      "$ref": "#/$defs/MultiObjectivePolicy"
+    },
+    "scaffold_candidates_path": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Scaffold Candidates Path"
+    },
+    "covalent_candidates_path": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Covalent Candidates Path"
+    },
+    "optimized_candidates_path": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Optimized Candidates Path"
+    },
+    "covalent_screen_results_path": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Covalent Screen Results Path"
+    },
+    "route_override_approved": {
+      "default": false,
+      "title": "Route Override Approved",
+      "type": "boolean"
+    },
+    "human_approved_generation": {
+      "default": false,
+      "title": "Human Approved Generation",
+      "type": "boolean"
+    },
+    "human_approved_covalent_screen": {
+      "default": false,
+      "title": "Human Approved Covalent Screen",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "request_id",
+    "project_id",
+    "allowed_warheads"
+  ],
+  "title": "DeNovoRequest",
+  "type": "object"
+}

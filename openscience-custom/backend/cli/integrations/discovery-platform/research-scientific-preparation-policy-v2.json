@@ -1,0 +1,109 @@
+{
+  "schema": "drug-design-receptor-preparation-policy-v2",
+  "version": "egfr-1m17-full-construct-cpu-preparation-v2",
+  "scope": "Independent proposed prepared receptor only; no docking, candidate generation, model calls, GPU or remote submission",
+  "source": {
+    "path": "science/projects/egfr-c797/ligand_first/source_structures/1M17.pdb",
+    "sha256": "5b020cd186307d657de80611793554b074f6936a3443d33f81d9b1a58004962e",
+    "expected_chain": "A",
+    "expected_seqres_count": 333,
+    "author_residue_start": 666,
+    "author_residue_end": 998,
+    "canonical_offset": 24
+  },
+  "v1_manifest": {
+    "path": "openscience-custom/backend/cli/integrations/discovery-platform/research-scientific-manifest.json",
+    "sha256": "d2d90d4f6f07963d7736e4bad80ea89feb72b1a37c7ad3cb84c89e8a714a2611"
+  },
+  "geometry": {
+    "anchor_coordinate_tolerance_angstrom": 0.001,
+    "bond_relative_tolerance": 0.25,
+    "angle_relative_tolerance": 0.25,
+    "internal_clash_lower_tolerance": 0.3,
+    "aromatic_plane_tolerance_angstrom": 0.25,
+    "protein_vdw_ratio_minimum": 0.75
+  },
+  "threshold_selection": "Exact numerical copy of frozen v1; not changed based on historical pose outcomes. Local protein bounds use full three-residue neighborhoods to bound matrix size; all protein heavy contacts also checked.",
+  "preparation_script_sha256": "68dbefbc5e67b2ca15d29945fc5bc8443489d6f78b54a3c70a1b7442616b6887",
+  "audit_script_sha256": "c4b35155929cfdae0b8722ea158fae369dfed60c7f59a369fd69775d66226bd2",
+  "runtime": {
+    "python": "3.11.16",
+    "pdbfixer_version": "1.12.0",
+    "pdbfixer_core_sha256": "a52e39125e3e0e2d1b58b83841fb05b8669e0bcdd73461e1b0ed1d5a8e8261b9",
+    "pdbfixer_commit": "94cfa4c0ca551cdc5f13320f9a658efd59f2b881",
+    "pdbfixer_archive_sha256": "eade9cc4abf6ebb44bde64b25e9dca3fdde71836876b6c337a0bfc905177bb6c",
+    "openmm_full_version": "8.6.1.dev-b399af4",
+    "numpy": "2.4.6"
+  },
+  "compute": {
+    "platform": "CPU",
+    "threads": 1,
+    "maximum_cpu_core_hours": 2,
+    "worker_cpu_seconds_limit": 6600,
+    "audit_cpu_seconds_limit": 600,
+    "gpu_hours": 0,
+    "remote_calls": 0
+  },
+  "random_seed": 20261013,
+  "altloc": {
+    "choice": "A",
+    "method": "Whole-residue lexicographically first label for equal-occupancy alternatives; retain blank records",
+    "physical_preference_claim": false,
+    "candidate_scores_used": false
+  },
+  "zero_occupancy": {
+    "method": "Discard unsupported coordinate from rebuild input; reconstruct required atom or residue with PDBFixer, retain old atom record in decisions ledger",
+    "expected_removed_atoms": 37,
+    "new_coordinates_are_observed": false
+  },
+  "missing_sequence": {
+    "method": "Attempt all missing residues from full deposited SEQRES, including artificial five-residue cloning prefix and unresolved termini/12-residue loop; no truncation",
+    "expected_missing_whole_residues_after_zero_atom_removal": 22,
+    "model_accuracy_claim": "Unknown until independent geometry checks; even geometric pass does not establish loop accuracy"
+  },
+  "heterogens": {
+    "crystal_ligand": "Remove AQ4 explicitly from protein receptor; retain original source unchanged",
+    "water": "Remove all crystal waters for declared dry rigid-receptor hypothesis; no solvent/ions added",
+    "limitation": "No structural-water or hydration validation"
+  },
+  "hydrogens": {
+    "pH_assumption": 7.0,
+    "forcefield": "amber14/protein.ff14SB.xml",
+    "reactive_residue_variant": "A:CYS773 neutral CYS with HG, pre-reaction model",
+    "other_variants": "OpenMM standard pH-based variants; exact selected variants recorded",
+    "termini": "Rebuild full deposited termini and use standard ionized termini at pH7; no unrecorded capping",
+    "measured_pH_claim": false
+  },
+  "output_provenance": {
+    "observed_atoms": "Retain original coordinates, occupancy and B-factor; record altloc choice",
+    "modeled_atoms": "Write occupancy0 and B-factor0 with explicit REMARK/model provenance; no claim of experimental occupancy",
+    "atom_mapping": "Record every output atom identity, source serial or modeling origin, retained/replaced input references and coordinates"
+  },
+  "required_audit": [
+    "unique_atom_identity",
+    "finite_coordinates",
+    "atom_provenance_and_original_coordinates",
+    "full_deposited_sequence_and_heavy_atom_completeness",
+    "polymer_connectivity",
+    "reactive_site_identity_and_prereaction_hydrogen",
+    "standard_amino_acid_stereochemistry",
+    "local_distance_geometry_bonds",
+    "local_distance_geometry_angles",
+    "local_distance_geometry_internal",
+    "aromatic_planarity",
+    "protein_heavy_atom_clashes"
+  ],
+  "failure_policy": "Any failed/missing check stops scientific readiness. Preserve proposed coordinates and failure evidence; no automatic threshold changes, residue deletion, structure substitution or second preparation attempt.",
+  "official_sources": [
+    "https://github.com/openmm/pdbfixer/commit/94cfa4c0ca551cdc5f13320f9a658efd59f2b881",
+    "https://raw.githubusercontent.com/openmm/pdbfixer/v1.12/Manual.html",
+    "https://docs.openmm.org/latest/userguide/application/03_model_building_editing.html",
+    "https://raw.githubusercontent.com/maabuu/posebusters/main/posebusters/config/dock.yml"
+  ],
+  "limitations": [
+    "Modeled loop/termini/sidechains are not experimental observations.",
+    "Single altloc and pH assumptions do not establish the biologically preferred state.",
+    "No full MolProbity/Ramachandran distribution, conformational ensemble or experimental validation.",
+    "Prepared v2 artifacts require a new scientific manifest/contract; frozen v1 cannot silently admit them."
+  ]
+}

@@ -1,0 +1,35 @@
+schema_version: "1.0"
+stage_order:
+  - af3
+  - covdock_lo
+  - independent_evaluation
+  - pareto
+campaign_id: egfr-c797-ligand-smoke-continuation-20261008
+project_id: egfr-c797-ligand-smoke-20260928
+campaign_path: projects/egfr-c797/ligand_first/campaign.json
+trace_chain_config: configs/ligand_first/EGFR_C797_smoke_continuation_20261008.yaml
+target_aliases: [EGFR, ERBB1]
+ligand_aliases: [erlotinib, AQ4, Tarceva, 厄洛替尼]
+target_config: configs/covindb/EGFR_C797_mvp_v1.yaml
+pdb: projects/egfr-c797/ligand_first/source_structures/1M17.pdb
+reference_ligand: projects/egfr-c797/ligand_first/derived/1M17_AQ4_parent_pose.sdf
+af3_source_data_json: results/EGFR-mini/af3_egfr_mini_covalent/EGFR_100424266_protomer_0_covalent/EGFR_100424266_protomer_0_covalent_data.json
+covdock_receptor: results/EGFR-mini/covdock_lo_grid_seed/EGFR_covdock_lo_grid_seed_receptor_prepared.mae
+attachment_residue: "A:797"
+covres: "A:CYS:773"
+seed_run_ids:
+  af3: 20261008T045824-alphafold3-mpae-106090ee3f
+  covdock_lo: 20261008T065829-schrodinger-covdock-lo-0a334174e1
+dispatch_policy: ligand-smoke-v1
+dispatch_batch: ligand-smoke-20260929-v3
+carsidock_top_n: 3
+af3_top_n: 3
+covdock_top_n: 3
+final_n: 3
+seed: 20260725
+cuda_device_index: 0
+min_carsidock_success_rate: 0.75
+min_af3_coverage: 0.95
+min_covdock_success_rate: 0.80
+min_parent_mcs_fraction: 0.60
+covdock_cpu_count: 4
